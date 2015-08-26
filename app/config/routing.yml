@@ -2,8 +2,3 @@ avenue_checkout:
     resource: "@AvenueCheckoutBundle/Controller/"
     type:     annotation
     prefix:   /
-
-avenue:
-    resource: "@AvenueBundle/Controller/"
-    type:     annotation
-    prefix:   /MAKKA
