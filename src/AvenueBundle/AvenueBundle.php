@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace AvenueBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class AvenueBundle extends Bundle
 {
 }
