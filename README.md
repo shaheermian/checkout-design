@@ -33,6 +33,8 @@ When you click "YES" for other shipping adress, javascript has to validate all f
 
 === COMING TODO ===
 
+If you are up to it, there are some more, let me know if you are unsure what this is about
+
 - remove scroll when pressing select a package
 - preload package images
 - make a good looking error box if there is form errors
