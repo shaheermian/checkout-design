@@ -38,3 +38,6 @@ If you are up to it, there are some more, let me know if you are unsure what thi
 - remove scroll when pressing select a package
 - preload package images
 - make a good looking error box if there is form errors
+- add underline to terms and privacy policy links
+- terms modal has to load content from https://www.your-secure-payment.com/terms/denmark/page
+- privacy policy modal has to load data from https://www.your-secure-payment.com/privacy/denmark/page
