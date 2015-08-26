@@ -1,5 +1,7 @@
 What to do:
 
+=== Update design ===
+
 git clone git@github.com:AvenueTrading/checkout-design.git
 
 cd checkout-design
@@ -22,3 +24,8 @@ So practically, the 2 versions below has to be the same, just there can be no te
 
 http://localhost/checkout-design/web/app_dev.php
 http://hitsdesign.in/Noznore/order2.html.
+
+
+=== JAVASCRIPT VALIDATION ===
+
+When you click "YES" for other shipping adress, javascript has to validate all fields with the attribute required="required".
