@@ -41,3 +41,4 @@ If you are up to it, there are some more, let me know if you are unsure what thi
 - add underline to terms and privacy policy links
 - terms modal has to load content from https://www.your-secure-payment.com/terms/denmark/page
 - privacy policy modal has to load data from https://www.your-secure-payment.com/privacy/denmark/page
+- us postal mail image has to be replaced with checkout-design/src/Avenue/CheckoutBundle/Resources/public/evani/images/royal-mail.png, and the size has to fit
