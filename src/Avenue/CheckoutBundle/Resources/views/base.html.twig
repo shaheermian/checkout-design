@@ -21,8 +21,10 @@
                         $('.package-box4').removeClass('select');
                         $('#package_type').html('Buy 3 + Get 3 FREE');
                         $('#total_price').html('£{{ priceMaximum.price }}');
-
-                        $.ajax({
+						$('#select1').text('selected');
+						$('#select2, #select3,#select4').text('select'); 
+                        
+						$.ajax({
                             url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productMaximum.id }}",
                         })
                         .done(function(data) {
@@ -37,6 +39,8 @@
                         $('.package-box4').removeClass('select');
                         $('#package_type').html('Buy 2 + Get 1 FREE');
                         $('#total_price').html('£{{ pricePopular.price }}');
+						$('#select2').text('selected');
+						$('#select1, #select3, #select4').text('select');
 
                         $.ajax({
                             url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productPopular.id }}",
@@ -53,6 +57,8 @@
                         $('.package-box4').removeClass('select');
                         $('#package_type').html('Buy 2');
                         $('#total_price').html('£{{ priceStarter.price }}');
+						$('#select3').text('selected');
+						$('#select2, #select1, #select4').text('select');
 
                         $.ajax({
                             url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productStarter.id }}",
@@ -69,6 +75,8 @@
                         $('.package-box4').addClass('select');
                         $('#package_type').html('Buy 1');
                         $('#total_price').html('£{{ priceTrial.price }}');
+						$('#select4').text('selected');
+						$('#select2, #select3, #select1').text('select');
 
                         $.ajax({
                             url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productTrial.id }}",
@@ -91,6 +99,24 @@
                     {% if currentItem.product.id == productTrial.id %}
                         $('#btn-four').click();
                     {% endif %}
+					
+					if(document.getElementById('radioOne').checked) {
+						toggleBillingAddress('Yes');
+					}else if(document.getElementById('radioTwo').checked) {
+						toggleBillingAddress('No');
+					}
+					
+					
+					$('#sbm_button').click(function(){
+							if(!$('#form_shippingAddress').val())
+							{$('#err_address').fadeIn('slow').delay(5000).fadeOut('slow');}
+							if(!$('#form_shippingCity').val())
+							{$('#err_city').fadeIn('slow').delay(5000).fadeOut('slow');}
+							if(!$('#form_shippingZip').val())
+							{$('#err_zipcode').fadeIn('slow').delay(5000).fadeOut('slow');}
+						}
+					);
+
             });
         </script>
     </head>
@@ -102,7 +128,9 @@
                     <center><a href="#"><img src="{{ asset('bundles/avenuecheckout/evani/images/top-logo.png') }}" class="img-responsive logo"></a></center>
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                    <img src="{{ asset('bundles/avenuecheckout/evani/images/header-right.png') }}" class="header-right">
+                    <div class="header-right">
+						<p class="header-p1">We’ve helped <span class="header-p2">56,372+ Europeans</span> <span class="header-p3">“Go Snore-Free”</span></p>
+					</div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="main-elements">
@@ -111,14 +139,17 @@
                     <div class="clearfix"></div>
                     <div class="col-md-8 col-sm-7 col-xs-12">
                         <div class="product-container">
-                            <a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-one" style="cursor:pointer;">
+                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-one" style="cursor:pointer;">-->
+                            <a ><div id="btn-one" style="cursor:pointer;">
                                     <div class="package-box1">
                                         <div class="box-heading">
                                             <p class="heading-text">MAXIMUM PROTECTION</p>
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -127,18 +158,23 @@
                                             <div class="price-box">
                                                 £{{ priceMaximum.price }}
                                             </div>
-                                            <button id="" class="select-btn"></button>
+                                           <button class="select-btn" id="select1">select</button>
                                         </div>
+										<div class="clear-fix"></div>
+										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
                                     </div>
                             </div></a>
-                            <a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-two" style="cursor:pointer;">
+                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-two" style="cursor:pointer;">-->
+                            <a><div id="btn-two" style="cursor:pointer;">
                                     <div class="package-box2">
                                         <div class="box-heading">
                                             <p class="heading-text">MOST POPULAR PACKAGE</p>
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-two"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -147,18 +183,23 @@
                                             <div class="price-box">
                                                 £{{ pricePopular.price }}
                                             </div>
-                                            <button id="" class="select-btn"></button>
+                                            <button class="select-btn" id="select2">select</button>
                                         </div>
+										<div class="clear-fix"></div>
+										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
                                     </div>
                             </div></a>
-                            <a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-three" style="cursor:pointer;">
+                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-three" style="cursor:pointer;">-->
+                            <a><div id="btn-three" style="cursor:pointer;">
                                     <div class="package-box3">
                                         <div class="box-heading">
                                             <p class="heading-text">STARTER PACKAGE</p>
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-three"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -167,17 +208,21 @@
                                             <div class="price-box">
                                                 £{{ priceStarter.price }}
                                             </div>
-                                            <button id="" class="select-btn"></button>
+                                            <button class="select-btn" id="select3">select</button>
                                         </div>
+										<div class="clear-fix"></div>
+										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
                                     </div>
                             </div></a>
-                            <a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-four" style="cursor:pointer;">
+                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-four" style="cursor:pointer;">-->
+                            <a><div id="btn-four" style="cursor:pointer;">
                                     <div class="package-box4">
                                         <div class="box-heading">
                                             <p class="heading-text">TRIAL PROTECTION </p>
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
+											<p class="heading-shipping">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -186,12 +231,14 @@
                                             <div class="price-box">
                                                 £{{ priceTrial.price }}
                                             </div>
-                                            <button id="" class="select-btn"></button>
+                                            <button class="select-btn" id="select4">select</button>
                                         </div>
+										<div class="clear-fix"></div>
+										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
                                     </div>
                             </div></a>
                             <div class="price-table">
-                                <img src="{{ asset('bundles/avenuecheckout/evani/images/us-postal.png') }}" class="us-postal">
+                                <img src="{{ asset('bundles/avenuecheckout/evani/images/royal-mail.png') }}" class="us-postal">
                                 <table class="tablep" border="0" cellspacing="0" cellpadding="4" align="right">
 
                                     <tr>
@@ -226,9 +273,14 @@
                     </div>
                     <div class="col-md-4 col-sm-5 col-xs-12">
                         <div class="frm-top" id="form-box">
-                            <center>
-                                <img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top-640.jpg') }}" class="hidden-lg hidden-md hidden-sm" style="width:100%;">
-                            </center>
+							<center>
+								<img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top.png') }}" class="hidden-sm hidden-xs" style="width:100%;">
+								<img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top-768.png') }}" class="hidden-lg hidden-md hidden-xs" style="width:100%;">
+								<img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top-640.png') }}" class="hidden-lg hidden-md hidden-sm" style="width:100%;">
+							</center>
+							<p class="frm-top-txt1">LIMITED SUPPLIES AVAILABLE</p>
+							<p class="frm-top-txt2">Final Step</p>       
+							<p class="frm-top-txt3">Payment INFORMATION</p>                     
                         </div>
                         <div class="frm-mid">
                             {{ form_start(form, {'attr':{'id':'checkout-form'}}) }}
@@ -247,12 +299,14 @@
                                                 <p style="text-align:left; padding-left:10px;"><strong></strong></p>
 
                                                 <div class="fieldelements">
-                                                    <label for="billing_street_address">Address</label>
+                                                    <label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:12px;color:red;display:none;float:right;">Please Enter Address</span></label>
+													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingAddress) }}
                                                 </div>
                                                 <div class="fieldelements">
-                                                    <label for="billing_city">City</label>
+                                                    <label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:12px;color:red;display:none;float:right;">Please Enter City</span></label>
+													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingCity) }}
                                                 </div>
@@ -329,10 +383,20 @@
                                                 </div>
                                                 -->
                                                 <div class="fieldelements">
-                                                    <label for="billing_postcode">Zip Code</label>
+                                                    <label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:12px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
+													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingZip) }}
                                                 </div>
+												<!--<script type="text/javascript">
+													if($('#radioOne').checked)
+													{
+														$('#form_shippingAddress').removeAttr('required');
+														$('#form_shippingCity').removeAttr('required');
+														$('#form_shippingZip').removeAttr('required');
+														alert('now unset!');
+													}
+												</script>-->
                                                 <hr>
                                             </div>
                                             <!--
@@ -373,18 +437,38 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="fieldelements" style="font:12px arial; text-align:left; margin:0; color:#fff;">
-                                                <input type="checkbox" name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a style="color:#fff;" data-toggle="modal" data-target="#myTerms">Terms & Conditions</a> and <a href="#" style="color:#fff;">Privacy Policy</a> of this website.</p>
+											<input type="checkbox" name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a style="color:#fff; text-decoration:underline;" href="https://www.your-secure-payment.com/terms/denmark/page" data-toggle="modal" data-target="#myTerms">Terms & Conditions</a> and <a href="https://www.your-secure-payment.com/privacy/denmark/page" style="color:#fff;text-decoration:underline" data-toggle="modal" data-target="#myPrivacy">Privacy Policy</a> of this website.</p>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div align="center">
-                                            <button  class="submit hidden-xs"><img src="{{ asset('bundles/avenuecheckout/evani/images/submit-frm.png') }}" style="width:100%;"></button>
-                                            <button  class="submit hidden-lg hidden-md hidden-sm"><img src="{{ asset('bundles/avenuecheckout/evani/images/submit-frm-640.png') }}" style="width:100%;"></button>
-                                        </div>
+                                        <div class="btn1-ordr1" align="center">
+										  <button id='sbm_button' class="submit">RUSH MY ORDER<br>
+											 <span class="btn-span">LIMITED TIME PROMOTION</span></button>
+										  <img src="{{ asset('bundles/avenuecheckout/evani/images/btn-shdw.png') }}" style="width:100%;">
+									    </div>
                                     </div>
-                                    <center><img src="{{ asset('bundles/avenuecheckout/evani/images/lock.png') }}" class="lock"></center>
-                                    <center><img src="{{ asset('bundles/avenuecheckout/evani/images/security1.png') }}" class="security1"></center>
-                                    <center><img src="{{ asset('bundles/avenuecheckout/evani/images/security2.png') }}" class="security2"></center>
+                                    <div class="lock-txt"><img src="{{ asset('bundles/avenuecheckout/evani/images/lock.png') }}" class="lock">SECURE 256-BIT SSL ENCRYPTION</div>
+									<div class="clearfix"></div>
+									<div class="secure-1">
+									  <p class="secure1-txt">100% Safe &amp; Secure Transactions </p>
+									  <center><img src="{{ asset('bundles/avenuecheckout/evani/images/security1.jpg') }}" class="security1"></center>
+								    </div>
+									<div class="secure-2">
+										<table border="0" cellpadding="5" cellspacing="0" width="100%">
+											<tbody><tr>
+											<td valign="top" width="10%"><img src="{{ asset('bundles/avenuecheckout/evani/images/ylc.png') }}"></td>
+											<td width="90%"><span class="span1">SHOP WITH CONFIDANCE</span><br><span class="span2">NOZNORE SNORING SAFE<br>AND SECURE. GURANTEED!</span></td>
+											</tr>
+											<tr>
+											<td colspan="2" width="14%"><span class="span3">You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at noznore.com</span></td>
+											</tr>
+											
+											<tr>
+											<td valign="top" width="10%"><img src="{{ asset('bundles/avenuecheckout/evani/images/gcld.png') }}"></td>
+											<td width="90%"><span class="span1">YOUR PRIVACY IS IMPORTANT!</span><br><span style="letter-spacing:-0.2px;">All information is encrypted and transmitted without risk using a Secure Sockets Layer (SSL) protocol.</span></td>
+											</tr>
+										</tbody></table>
+									</div>
                                 </div>
                                 <div id="formbottom"></div>
                             {{ form_end(form) }}
@@ -400,9 +484,9 @@
             <div class="container">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <p class="ftr-txt">
-                    <a data-toggle="modal" data-target="#myTerms">Terms and Conditions &nbsp;&nbsp;</a>
+                    <a data-toggle="modal" href="https://www.your-secure-payment.com/terms/denmark/page" data-target="#myTerms">Terms and Conditions</a>
                     <br class="ftr-brk">
-                    <a data-toggle="modal" data-target="#myPrivacy">Privacy Policy &nbsp;&nbsp;</a>
+                    <a data-toggle="modal" href="https://www.your-secure-payment.com/privacy/denmark/page" data-target="#myPrivacy">Privacy Policy</a>
                     <br class="ftr-brk">
                     <a data-toggle="modal" data-target="#myContact">Contact Us</a>
                     </p>
@@ -426,17 +510,17 @@
         </div>
 
         <div id="myPrivacy" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header" style="border-bottom:none;">
-                        Privacy
-                    </div>
-                    <div class="modal-body">
-                        Privacy
-                    </div>
-                </div>
-            </div>
+			<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+					   <div class="modal-header" style="border-bottom:none;">
+							<!--Privacy-->
+						</div>
+						<div class="modal-body">
+							<!--Privacy-->
+					   </div>
+					</div>
+			</div>
         </div>
 
         <div id="myContact" class="modal fade" role="dialog">
@@ -458,13 +542,13 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header" style="border-bottom:none;">
-                        Terms
+                        <!--Terms-->
                     </div>
                     <div class="modal-body">
-                        Terms
+                        <!--Terms-->
                     </div>
                 </div>
-            </div>
+			</div>
         </div>
 
         <script type="text/ecmascript">
@@ -474,11 +558,18 @@
                 if (radioButtonObj.value == "no")
                 {
                     billingDiv.style.display = 'inline';
+					$('#form_shippingAddress').attr('required','required');
+					$('#form_shippingCity').attr('required','required');
+					$('#form_shippingZip').attr('required','required');
                 }
                 else
                 {
                     billingDiv.style.display = 'none';
+					$('#form_shippingAddress').removeAttr('required');
+					$('#form_shippingCity').removeAttr('required');
+					$('#form_shippingZip').removeAttr('required');
                 }
+					  
             }
         </script>
 
@@ -492,8 +583,10 @@
             //var paymentButtonText = 'Complete Payment';
             //var paymentWaitText = 'Please wait...';
         </script>
-<script src="https://payment.quickpay.net/embedded/v1/quickpay.js"></script>
-<script type="text/javascript" src="{{ asset('bundles/avenuecheckout/js/quickpay.js') }}"></script>
+		<script src="https://payment.quickpay.net/embedded/v1/quickpay.js"></script>
+		<script type="text/javascript" src="{{ asset('bundles/avenuecheckout/js/quickpay.js') }}"></script>
 
-    </body>
+		
+		
+	</body>
 </html>
