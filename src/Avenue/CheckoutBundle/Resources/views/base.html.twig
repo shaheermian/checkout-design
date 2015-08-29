@@ -13,7 +13,31 @@
         <script src="{{ asset('bundles/avenuecheckout/evani/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bundles/avenuecheckout/evani/js/bookmarkscroll.js') }}"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
+            this.addEventListener("DOMContentLoaded", preloadImages, true);
+
+			var loadedImages = 0;
+			var imageArray = new Array(
+				"{{ asset('bundles/avenuecheckout/evani/images/product1.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product-1-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product3.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product4.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/select-box-768.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/selected-box-desk.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-768.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-desk.jpg') }}"
+			);
+			var tempImage = Array();
+			function preloadImages()
+			{
+				for (var i = 0; i < imageArray.length; i++) {
+					tempImage[i] = new Image();
+					tempImage[i] = imageArray[i];
+				}
+			}
+			
+			$(document).ready(function() {
                     $('#btn-one').click(function(){
                         $('.package-box1').addClass('select');
                         $('.package-box2').removeClass('select');
@@ -30,6 +54,7 @@
                         .done(function(data) {
                             console.log(data);
                         });
+						
                     });
 
                     $('#btn-two').click(function(){
@@ -109,13 +134,26 @@
 					
 					$('#sbm_button').click(function(){
 							if(!$('#form_shippingAddress').val())
-							{$('#err_address').fadeIn('slow').delay(5000).fadeOut('slow');}
+							{$('#err_address').fadeIn('slow').delay(7000).fadeOut('slow');
+							$('#form_shippingAddress').css('background-color','#FFE4E1');}
 							if(!$('#form_shippingCity').val())
-							{$('#err_city').fadeIn('slow').delay(5000).fadeOut('slow');}
+							{$('#err_city').fadeIn('slow').delay(7000).fadeOut('slow');
+								$('#form_shippingCity').css('background-color','#FFE4E1');}
 							if(!$('#form_shippingZip').val())
-							{$('#err_zipcode').fadeIn('slow').delay(5000).fadeOut('slow');}
+							{$('#err_zipcode').fadeIn('slow').delay(7000).fadeOut('slow');
+								$('#form_shippingZip').css('background-color','#FFE4E1');}
 						}
 					);
+					
+					$( "#form_shippingAddress" ).keydown(function() {
+					  $('#form_shippingAddress').css('background-color','');
+					});
+					$( "#form_shippingCity" ).keydown(function() {
+					  $('#form_shippingCity').css('background-color','');
+					});
+					$( "#form_shippingZip" ).keydown(function() {
+					  $('#form_shippingZip').css('background-color','');
+					});
 
             });
         </script>
@@ -149,7 +187,7 @@
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
+											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -174,7 +212,7 @@
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
+											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-two"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -199,7 +237,7 @@
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
+											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-three"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -220,14 +258,14 @@
                                         <div class="box-heading">
                                             <p class="heading-text">TRIAL PROTECTION </p>
                                         </div>
-                                        <div class="shipping-icon-xs">
+                                        <!--<div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
-                                        </div>
+											<p class="heading-shipping-xs">Free Shipping</p>
+                                        </div>-->
                                         <div class="check"></div>
                                         <div class="product-image-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
                                         <div class="product-price">
-                                            <p class="buy">Buy 1<br><span>&nbsp;</span></p>
+                                            <p class="buy">Buy 1<span class="smallship">&nbsp;(£3 shipping)</span><br /><span>&nbsp;</span></p>
                                             <div class="price-box">
                                                 £{{ priceTrial.price }}
                                             </div>
@@ -293,19 +331,22 @@
                                                 <input id="radioTwo"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="no">&nbsp;No
                                             </div>
                                         </div>
-                                        <center><img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards"></center>
+                                        <center>
+										<span>We Accept:</span>&nbsp;<img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards">
+										</center>
+										<!---->
                                         <div style="margin-top: 20px;">
                                             <div style="display: none;" id="billingDiv">
                                                 <p style="text-align:left; padding-left:10px;"><strong></strong></p>
 
                                                 <div class="fieldelements">
-                                                    <label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:12px;color:red;display:none;float:right;">Please Enter Address</span></label>
+                                                    <label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:14px;color:red;display:none;float:right;">Please Enter Address</span></label>
 													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingAddress) }}
                                                 </div>
                                                 <div class="fieldelements">
-                                                    <label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:12px;color:red;display:none;float:right;">Please Enter City</span></label>
+                                                    <label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:14px;color:red;display:none;float:right;">Please Enter City</span></label>
 													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingCity) }}
@@ -383,7 +424,7 @@
                                                 </div>
                                                 -->
                                                 <div class="fieldelements">
-                                                    <label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:12px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
+                                                    <label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:14px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
 													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingZip) }}
@@ -412,18 +453,18 @@
                                             </div>
                                             -->
                                             <div class="fieldelements">
-                                                <label for="cc_number">CC#</label>
+                                                <label for="cc_number">Card Number</label>
                                                 <div class="clearfix"></div>
                                                 <input data-quickpay="cardnumber" autocomplete="off" type="text" id="cc_number" placeholder="Card Number">
                                             </div>
                                             <div class="fieldelements">
-                                                <label for="cc_expires" class="formlabel"> Exp. Date</label>
+                                                <label for="cc_expires" class="formlabel"> Expiry Date</label>
                                                 <div class="clearfix"></div>
                                                 <input placeholder="MM / YY" data-quickpay="expiration" autocomplete="off" type="text" id="cc_expire">
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="fieldelements">
-                                                <label for="cc_cvv" class="formlabel">CVV</label>
+                                                <label for="cc_cvv" class="formlabel">Security Code*</label>
                                                 <div class="clearfix"></div>
                                                 <input data-quickpay="cvd" autocomplete="off"  type="text" class="cvv" placeholder="Number" >
                                                 <span data-toggle="modal" data-target="#myModal" style="margin-left:10px; cursor:pointer; text-decoration:underline;">What's This?</span>

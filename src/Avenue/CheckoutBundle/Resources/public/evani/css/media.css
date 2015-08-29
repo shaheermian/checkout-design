@@ -119,9 +119,24 @@ CSS FOR PRODUCT PACKAGE
 	font-family: 'robotobold_italic';
 	text-align:center;
 	}
+	
+.product-price p span.smallship{
+	font-size: 85%;
+	color:#7a7a7a;
+	font-style:normal !important;
+	font-weight:normal !important;
+	}
+
 .package-box1.select .product-price p, .package-box2.select .product-price p, .package-box3.select .product-price p, .package-box4.select .product-price p{
 color:#1b499d;}
 .package-box1.select .product-price p span, .package-box2.select .product-price p span, .package-box3.select .product-price p span, .package-box4.select .product-price p span{ color:#ce0e0d;}
+
+.package-box4.select .product-price p span.smallship{ 
+	font-style:normal !important;
+	font-weight:normal !important;
+	font-size: 85%;
+	color:#1b499d;
+	}
 
 .price-box{
 	float:left;
