@@ -134,13 +134,26 @@
 					
 					$('#sbm_button').click(function(){
 							if(!$('#form_shippingAddress').val())
-							{$('#err_address').fadeIn('slow').delay(5000).fadeOut('slow');}
+							{$('#err_address').fadeIn('slow').delay(7000).fadeOut('slow');
+							$('#form_shippingAddress').css('background-color','#FFE4E1');}
 							if(!$('#form_shippingCity').val())
-							{$('#err_city').fadeIn('slow').delay(5000).fadeOut('slow');}
+							{$('#err_city').fadeIn('slow').delay(7000).fadeOut('slow');
+								$('#form_shippingCity').css('background-color','#FFE4E1');}
 							if(!$('#form_shippingZip').val())
-							{$('#err_zipcode').fadeIn('slow').delay(5000).fadeOut('slow');}
+							{$('#err_zipcode').fadeIn('slow').delay(7000).fadeOut('slow');
+								$('#form_shippingZip').css('background-color','#FFE4E1');}
 						}
 					);
+					
+					$( "#form_shippingAddress" ).keydown(function() {
+					  $('#form_shippingAddress').css('background-color','');
+					});
+					$( "#form_shippingCity" ).keydown(function() {
+					  $('#form_shippingCity').css('background-color','');
+					});
+					$( "#form_shippingZip" ).keydown(function() {
+					  $('#form_shippingZip').css('background-color','');
+					});
 
             });
         </script>
@@ -252,7 +265,7 @@
                                         <div class="check"></div>
                                         <div class="product-image-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
                                         <div class="product-price">
-                                            <p class="buy">Buy 1<br><span>&nbsp;</span></p>
+                                            <p class="buy">Buy 1<span class="smallship">&nbsp;(£3 shipping)</span><br /><span>&nbsp;</span></p>
                                             <div class="price-box">
                                                 £{{ priceTrial.price }}
                                             </div>
@@ -318,19 +331,22 @@
                                                 <input id="radioTwo"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="no">&nbsp;No
                                             </div>
                                         </div>
-                                        <center><img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards"></center>
+                                        <center>
+										<span>We Accept:</span>&nbsp;<img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards">
+										</center>
+										<!---->
                                         <div style="margin-top: 20px;">
                                             <div style="display: none;" id="billingDiv">
                                                 <p style="text-align:left; padding-left:10px;"><strong></strong></p>
 
                                                 <div class="fieldelements">
-                                                    <label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:12px;color:red;display:none;float:right;">Please Enter Address</span></label>
+                                                    <label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:14px;color:red;display:none;float:right;">Please Enter Address</span></label>
 													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingAddress) }}
                                                 </div>
                                                 <div class="fieldelements">
-                                                    <label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:12px;color:red;display:none;float:right;">Please Enter City</span></label>
+                                                    <label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:14px;color:red;display:none;float:right;">Please Enter City</span></label>
 													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingCity) }}
@@ -408,7 +424,7 @@
                                                 </div>
                                                 -->
                                                 <div class="fieldelements">
-                                                    <label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:12px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
+                                                    <label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:14px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
 													
                                                     <div class="clearfix"></div>
                                                     {{ form_widget(form.shippingZip) }}
@@ -437,18 +453,18 @@
                                             </div>
                                             -->
                                             <div class="fieldelements">
-                                                <label for="cc_number">CC#</label>
+                                                <label for="cc_number">Card Number</label>
                                                 <div class="clearfix"></div>
                                                 <input data-quickpay="cardnumber" autocomplete="off" type="text" id="cc_number" placeholder="Card Number">
                                             </div>
                                             <div class="fieldelements">
-                                                <label for="cc_expires" class="formlabel"> Exp. Date</label>
+                                                <label for="cc_expires" class="formlabel"> Expiry Date</label>
                                                 <div class="clearfix"></div>
                                                 <input placeholder="MM / YY" data-quickpay="expiration" autocomplete="off" type="text" id="cc_expire">
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="fieldelements">
-                                                <label for="cc_cvv" class="formlabel">CVV</label>
+                                                <label for="cc_cvv" class="formlabel">Security Code*</label>
                                                 <div class="clearfix"></div>
                                                 <input data-quickpay="cvd" autocomplete="off"  type="text" class="cvv" placeholder="Number" >
                                                 <span data-toggle="modal" data-target="#myModal" style="margin-left:10px; cursor:pointer; text-decoration:underline;">What's This?</span>
