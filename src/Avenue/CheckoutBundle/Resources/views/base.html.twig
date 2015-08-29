@@ -13,7 +13,31 @@
         <script src="{{ asset('bundles/avenuecheckout/evani/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bundles/avenuecheckout/evani/js/bookmarkscroll.js') }}"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
+            this.addEventListener("DOMContentLoaded", preloadImages, true);
+
+			var loadedImages = 0;
+			var imageArray = new Array(
+				"{{ asset('bundles/avenuecheckout/evani/images/product1.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product-1-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product3.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product4.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/select-box-768.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/selected-box-desk.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-768.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-desk.jpg') }}"
+			);
+			var tempImage = Array();
+			function preloadImages()
+			{
+				for (var i = 0; i < imageArray.length; i++) {
+					tempImage[i] = new Image();
+					tempImage[i] = imageArray[i];
+				}
+			}
+			
+			$(document).ready(function() {
                     $('#btn-one').click(function(){
                         $('.package-box1').addClass('select');
                         $('.package-box2').removeClass('select');
@@ -30,6 +54,7 @@
                         .done(function(data) {
                             console.log(data);
                         });
+						
                     });
 
                     $('#btn-two').click(function(){
@@ -149,7 +174,7 @@
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
+											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -174,7 +199,7 @@
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
+											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-two"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -199,7 +224,7 @@
                                         </div>
                                         <div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
+											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
                                         <div class="product-image-three"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
@@ -220,10 +245,10 @@
                                         <div class="box-heading">
                                             <p class="heading-text">TRIAL PROTECTION </p>
                                         </div>
-                                        <div class="shipping-icon-xs">
+                                        <!--<div class="shipping-icon-xs">
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping">Free Shipping</p>
-                                        </div>
+											<p class="heading-shipping-xs">Free Shipping</p>
+                                        </div>-->
                                         <div class="check"></div>
                                         <div class="product-image-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
                                         <div class="product-price">
