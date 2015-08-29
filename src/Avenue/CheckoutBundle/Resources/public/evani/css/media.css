@@ -123,6 +123,7 @@ CSS FOR PRODUCT PACKAGE
 .product-price p span.smallship{
 	font-size: 85%;
 	color:#7a7a7a;
+	font-family:'';/*font-family removed to remove bold and italic on shipping value of trial protection*/
 	font-style:normal !important;
 	font-weight:normal !important;
 	}
@@ -132,6 +133,7 @@ color:#1b499d;}
 .package-box1.select .product-price p span, .package-box2.select .product-price p span, .package-box3.select .product-price p span, .package-box4.select .product-price p span{ color:#ce0e0d;}
 
 .package-box4.select .product-price p span.smallship{ 
+	font-family:'';/*font-family removed to remove bold and italic on shipping value of trial protection*/
 	font-style:normal !important;
 	font-weight:normal !important;
 	font-size: 85%;
