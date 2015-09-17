@@ -17,7 +17,7 @@ class DefaultController extends Controller
         $entity = new \stdClass();
         $entity->id = 1;
 
-        $productTrial = new \stdClass();
+        /*$productTrial = new \stdClass();
         $productTrial->id = 1;
 
         $priceTrial = new \stdClass();
@@ -33,7 +33,7 @@ class DefaultController extends Controller
         $productPopular->id = 3;
 
         $pricePopular = new \stdClass();
-        $pricePopular->price = 100;
+        $pricePopular->price = 100;*/
 
         $productMaximum = new \stdClass();
         $productMaximum->id = 4;
@@ -55,12 +55,12 @@ class DefaultController extends Controller
         return array(
             'entity' => $entity,
             'form' => $form->createView(),
-            'productTrial' => $productTrial,
+            /*'productTrial' => $productTrial,
             'priceTrial' => $priceTrial,
             'productStarter' => $productStarter,
             'priceStarter' => $priceStarter,
             'productPopular' => $productPopular,
-            'pricePopular' => $pricePopular,
+            'pricePopular' => $pricePopular,*/
             'productMaximum' => $productMaximum,
             'priceMaximum' => $priceMaximum,
             'currentItem' => $currentItem,
