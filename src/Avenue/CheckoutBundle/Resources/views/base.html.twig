@@ -17,17 +17,18 @@
 
 			var loadedImages = 0;
 			var imageArray = new Array(
-				"{{ asset('bundles/avenuecheckout/evani/images/product1.png') }}", 
-				"{{ asset('bundles/avenuecheckout/evani/images/product-1-unselect.png') }}", 
-				"{{ asset('bundles/avenuecheckout/evani/images/product2.png') }}", 
-				"{{ asset('bundles/avenuecheckout/evani/images/product2-unselect.png') }}", 
-				"{{ asset('bundles/avenuecheckout/evani/images/product3.png') }}", 
 				"{{ asset('bundles/avenuecheckout/evani/images/product4.png') }}", 
 				"{{ asset('bundles/avenuecheckout/evani/images/select-box-768.jpg') }}", 
 				"{{ asset('bundles/avenuecheckout/evani/images/selected-box-desk.jpg') }}", 
 				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-768.jpg') }}", 
-				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-desk.jpg') }}"
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-desk.jpg') }}",
+				"{{ asset('bundles/avenuecheckout/evani/images/PostDKLogo.png') }}"
 			);
+				/*"{{ asset('bundles/avenuecheckout/evani/images/product1.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product-1-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product3.png') }}", */
 			var tempImage = Array();
 			function preloadImages()
 			{
@@ -40,13 +41,13 @@
 			$(document).ready(function() {
                     $('#btn-one').click(function(){
                         $('.package-box1').addClass('select');
-                        $('.package-box2').removeClass('select');
+                       /* $('.package-box2').removeClass('select');
                         $('.package-box3').removeClass('select');
                         $('.package-box4').removeClass('select');
                         $('#package_type').html('Buy 3 + Get 3 FREE');
                         $('#total_price').html('£{{ priceMaximum.price }}');
 						$('#select1').text('selected');
-						$('#select2, #select3,#select4').text('select'); 
+					   $('#select2, #select3,#select4').text('select'); */
                         
 						$.ajax({
                             url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productMaximum.id }}",
@@ -57,7 +58,7 @@
 						
                     });
 
-                    $('#btn-two').click(function(){
+                    /*$('#btn-two').click(function(){
                         $('.package-box1').removeClass('select');
                         $('.package-box2').addClass('select');
                         $('.package-box3').removeClass('select');
@@ -108,14 +109,14 @@
                         })
                         .done(function(data) {
                             console.log(data);
-                        });
+						});
 
-                    });
+                    });*/
 
                     {% if currentItem.product.id == productMaximum.id %}
                         $('#btn-one').click();
                     {% endif %}
-                    {% if currentItem.product.id == productPopular.id %}
+                    /*{% if currentItem.product.id == productPopular.id %}
                         $('#btn-two').click();
                     {% endif %}
                     {% if currentItem.product.id == productStarter.id %}
@@ -123,7 +124,7 @@
                     {% endif %}
                     {% if currentItem.product.id == productTrial.id %}
                         $('#btn-four').click();
-                    {% endif %}
+                    {% endif %}*/
 					
 					if(document.getElementById('radioOne').checked) {
 						toggleBillingAddress('Yes');
@@ -172,14 +173,14 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="main-elements">
-                    <h1 class="cong-text">CONGRATULATIONS!</h1>
-                    <span class="span-text">You are 1 step away from Snore Free Sleep</span>
+                    <h1 class="cong-text">TAK FOR SNAKKEN!</h1>
+                    <span class="span-text">Du er nu kun ét skridt fra at blive snorkefri!</span>
                     <div class="clearfix"></div>
                     <div class="col-md-8 col-sm-7 col-xs-12">
                         <div class="product-container">
                             <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-one" style="cursor:pointer;">-->
                             <a ><div id="btn-one" style="cursor:pointer;">
-                                    <div class="package-box1">
+                                    <div class="package-box1" >
                                         <div class="box-heading">
                                             <p class="heading-text">MAXIMUM PROTECTION</p>
                                             <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
@@ -190,7 +191,8 @@
 											<p class="heading-shipping-xs">Free Shipping</p>
                                         </div>
                                         <div class="check"></div>
-                                        <div class="product-image-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
+									<!--<div class="product-image-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>-->
+										<div class="product-image-four"><!--<img src="{{ asset('bundles/avenuecheckout/evani/images/product4.png') }}" >--></div>
                                         <div class="product-price">
                                             <p>Buy 3 + Get 3<br><span>FREE</span></p>
                                             <div class="price-box">
@@ -202,81 +204,22 @@
 										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
                                     </div>
                             </div></a>
-                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-two" style="cursor:pointer;">-->
-                            <a><div id="btn-two" style="cursor:pointer;">
-                                    <div class="package-box2">
-                                        <div class="box-heading">
-                                            <p class="heading-text">MOST POPULAR PACKAGE</p>
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
-											<p class="heading-shipping">Free Shipping</p>
-                                        </div>
-                                        <div class="shipping-icon-xs">
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping-xs">Free Shipping</p>
-                                        </div>
-                                        <div class="check"></div>
-                                        <div class="product-image-two"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
-                                        <div class="product-price">
-                                            <p>Buy 2 + Get 1<br><span>FREE</span></p>
-                                            <div class="price-box">
-                                                £{{ pricePopular.price }}
-                                            </div>
-                                            <button class="select-btn" id="select2">select</button>
-                                        </div>
-										<div class="clear-fix"></div>
-										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
-                                    </div>
-                            </div></a>
-                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-three" style="cursor:pointer;">-->
-                            <a><div id="btn-three" style="cursor:pointer;">
-                                    <div class="package-box3">
-                                        <div class="box-heading">
-                                            <p class="heading-text">STARTER PACKAGE</p>
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
-											<p class="heading-shipping">Free Shipping</p>
-                                        </div>
-                                        <div class="shipping-icon-xs">
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping-xs">Free Shipping</p>
-                                        </div>
-                                        <div class="check"></div>
-                                        <div class="product-image-three"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
-                                        <div class="product-price">
-                                            <p class="buy">Buy 2<br><span>&nbsp;</span></p>
-                                            <div class="price-box">
-                                                £{{ priceStarter.price }}
-                                            </div>
-                                            <button class="select-btn" id="select3">select</button>
-                                        </div>
-										<div class="clear-fix"></div>
-										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
-                                    </div>
-                            </div></a>
-                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-four" style="cursor:pointer;">-->
-                            <a><div id="btn-four" style="cursor:pointer;">
-                                    <div class="package-box4">
-                                        <div class="box-heading">
-                                            <p class="heading-text">TRIAL PROTECTION </p>
-                                        </div>
-                                        <!--<div class="shipping-icon-xs">
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping-xs">Free Shipping</p>
-                                        </div>-->
-                                        <div class="check"></div>
-                                        <div class="product-image-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>
-                                        <div class="product-price">
-                                            <p class="buy">Buy 1<span class="smallship">&nbsp;(£3 shipping)</span><br /><span>&nbsp;</span></p>
-                                            <div class="price-box">
-                                                £{{ priceTrial.price }}
-                                            </div>
-                                            <button class="select-btn" id="select4">select</button>
-                                        </div>
-										<div class="clear-fix"></div>
-										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
-                                    </div>
-                            </div></a>
+							<div>
+								<h2 style="font-family: 'robotobold';">
+									Hvordan fungerer NoZnore?
+								</h2>
+								<p style="font-family:'robotoregular';font-size:19.5px;">
+									NoZnore<sup style="font-size:8px;">TM</sup> HGS-35 virker bedre end de konventionelle anti-snorkeskinner. Snorken er ofte forårsaget af at dine luftveje bliver indsnævret og din tunge og hals vibrerer. Med en anti-snoreskinne placeret i munden, meget lig en bideskinne – vil din underkæbe forblive i en fremadrettet position og din mund holdes åben. Dette forhindre din underkæbe i at falde tilbage og ligge pres på dine luftveje, så de forbliver åbne.
+								</p>
+								<div style="width:100%;text-align:center;">
+									<div style="width:48%; font-family: 'robotobold'; padding:10px; text-align:center; display:table-cell;">Uden NoZnore<br /><img width="85%" src="{{ asset('bundles/avenuecheckout/evani/images/udenNoZnore.png') }}"></div>
+									<div style="width:48%; font-family: 'robotobold'; padding:10px; margin-left:-5px; text-align:center; display:table-cell;">MedNoZnore<br /><img width="85%" src="{{ asset('bundles/avenuecheckout/evani/images/MedNoZnore.png') }}"></div>
+								</div>
+								<br />
+								<br />
+							</div>
                             <div class="price-table">
-                                <img src="{{ asset('bundles/avenuecheckout/evani/images/royal-mail.png') }}" class="us-postal">
+                                <img src="{{ asset('bundles/avenuecheckout/evani/images/PostDKLogo.png') }}" class="us-postal" style="margin-top:12%;" width="182px">
                                 <table class="tablep" border="0" cellspacing="0" cellpadding="4" align="right">
 
                                     <tr>

@@ -43,7 +43,7 @@ class DefaultController extends Controller
 
         $currentItem = new \stdClass();
         $currentItem->product = new \stdClass();
-        $currentItem->product->id = 4;
+        $currentItem->product->id = 3;
 
         $form = $this->createFormBuilder()
             ->add('shippingAddress')
