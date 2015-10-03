@@ -4,11 +4,43 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width">
-        <title>Noznore</title>
+        <title>Avenue Hair</title>
         <link rel="shortcut icon" href="{{ asset('bundles/avenuecheckout/evani/images/favicon.ico') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/avenuecheckout/evani/css/bootstrap.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/avenuecheckout/evani/css/media.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/avenuecheckout/evani/fonts/stylesheet.css') }}">
+		<style type="text/css">
+			/* Simple message styles customization */
+			.invalid{
+				border-color: #E9322D!important;
+				box-shadow: 0 0 6px #F8B9B7!important;
+			}
+			#form-error
+			{
+				text-align:left;
+				background-color:#FFE4E1;
+				border-color: #E9322D!important;
+				box-shadow: 0 0 6px #F8B9B7!important;
+				color:red;
+				margin-left:0px;
+				padding-left:5px;
+			}
+			#form-error li
+			{
+				list-style-type:none;
+				margin-left:0px;
+			}
+			#form-error li:before
+			{
+				content: '\2022';
+				font-size:15px;
+				font-weight:bold;
+				padding-right: 5px;
+			}
+			.popover-content{
+				color:black;
+			}
+		</style>
         <script type="text/javascript" src="{{ asset('bundles/avenuecheckout/evani/js/jquery-1.11.1.min.js') }}"></script>
         <script src="{{ asset('bundles/avenuecheckout/evani/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bundles/avenuecheckout/evani/js/bookmarkscroll.js') }}"></script>
@@ -39,124 +71,297 @@
 			}
 			
 			$(document).ready(function() {
-                    $('#btn-one').click(function(){
-                        $('.package-box1').addClass('select');
-                       /* $('.package-box2').removeClass('select');
-                        $('.package-box3').removeClass('select');
-                        $('.package-box4').removeClass('select');
-                        $('#package_type').html('Buy 3 + Get 3 FREE');
-                        $('#total_price').html('£{{ priceMaximum.price }}');
-						$('#select1').text('selected');
-					   $('#select2, #select3,#select4').text('select'); */
-                        
-						$.ajax({
-                            url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productMaximum.id }}",
-                        })
-                        .done(function(data) {
-                            console.log(data);
-                        });
+				$('#unchecked2, #unchecked3, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+				$('#unchecked1').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+				$('.btn-one').click(function(){
+					$('.package-box1').addClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productMaximum.name }}');
+					$('#total_price').html('£{{ productMaximum.total }}');
+					$('#ship_price').html('£{{ productMaximum.shippingPrice }}');
+					$('#ship_type').html('{{ productMaximum.shippingText }}');
+					$('#unchecked1').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked2, #unchecked3, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select1').text('selected');
+					$('#select2, #select3,#select4,#select5').text('select');
+				}); 
+				$('.btn-two').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').addClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productLarge.name }}')
+					$('#total_price').html('£{{ productLarge.total }}');
+					$('#ship_price').html('£{{ productLarge.shippingPrice }}');
+					$('#ship_type').html('{{ productLarge.shippingText }}');
+				$('#unchecked2').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked3, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select2').text('selected');
+					$('#select1, #select3, #select4,#select5').text('select');
+				});
+				$('.btn-three').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').addClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productStarter.name }}');
+					$('#total_price').html('£{{ productStarter.total }}');
+					$('#ship_price').html('£{{ productStarter.shippingPrice }}');
+					$('#ship_type').html('{{ productStarter.shippingText }}');
+				$('#unchecked3').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked2, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select3').text('selected');
+					$('#select2, #select1, #select4,#select5').text('select');
+				});
+				$('.btn-four').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').addClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productBundleOffer.name }}');
+					$('#total_price').html('£{{ productBundleOffer.total }}');
+					$('#ship_price').html('£{{ productBundleOffer.shippingPrice }}');
+					$('#ship_type').html('{{ productBundleOffer.shippingText }}');
+				$('#unchecked4').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked2, #unchecked3, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select4').text('selected');
+					$('#select2, #select3, #select1,#select5').text('select');
+				});
+				$('.btn-five').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').addClass('select');
+					$('#package_type').html('{{ productSingle.name }}');
+					$('#total_price').html('£{{ productSingle.total }}');
+					$('#ship_price').html('£{{ productSingle.shippingPrice }}');
+					$('#ship_type').html('{{ productSingle.shippingText }}');
+				$('#unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked2, #unchecked3, #unchecked4').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select5').text('selected');
+					$('#select2, #select3, #select1,#select4').text('select');
+				});
+				
+				{% if currentItem.product.id == productMaximum.id %}
+					$('.btn-one').click();
+				{% endif %}
+				{% if currentItem.product.id == productLarge.id %}
+					$('.btn-two').click();
+				{% endif %}
+				{% if currentItem.product.id == productBundleOffer.id %}
+					$('.btn-three').click();
+				{% endif %}
+				{% if currentItem.product.id == productStarter.id %}
+					$('.btn-four').click();
+				{% endif %}
+				{% if currentItem.product.id == productSingle.id %}
+					$('.btn-five').click();
+				{% endif %}
+				
+				if(document.getElementById('radioOne').checked) {
+					toggleBillingAddress('Yes');
+				}else if(document.getElementById('radioTwo').checked) {
+					toggleBillingAddress('No');
+				}
+				
+				
+				$('#sbm_button').click(function(){
 						
-                    });
-
-                    /*$('#btn-two').click(function(){
-                        $('.package-box1').removeClass('select');
-                        $('.package-box2').addClass('select');
-                        $('.package-box3').removeClass('select');
-                        $('.package-box4').removeClass('select');
-                        $('#package_type').html('Buy 2 + Get 1 FREE');
-                        $('#total_price').html('£{{ pricePopular.price }}');
-						$('#select2').text('selected');
-						$('#select1, #select3, #select4').text('select');
-
-                        $.ajax({
-                            url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productPopular.id }}",
-                        })
-                        .done(function(data) {
-                            console.log(data);
-                        });
-
-                    });
-                    $('#btn-three').click(function(){
-                        $('.package-box1').removeClass('select');
-                        $('.package-box2').removeClass('select');
-                        $('.package-box3').addClass('select');
-                        $('.package-box4').removeClass('select');
-                        $('#package_type').html('Buy 2');
-                        $('#total_price').html('£{{ priceStarter.price }}');
-						$('#select3').text('selected');
-						$('#select2, #select1, #select4').text('select');
-
-                        $.ajax({
-                            url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productStarter.id }}",
-                        })
-                        .done(function(data) {
-                            console.log(data);
-                        });
-
-                    });
-                    $('#btn-four').click(function(){
-                        $('.package-box1').removeClass('select');
-                        $('.package-box2').removeClass('select');
-                        $('.package-box3').removeClass('select');
-                        $('.package-box4').addClass('select');
-                        $('#package_type').html('Buy 1');
-                        $('#total_price').html('£{{ priceTrial.price }}');
-						$('#select4').text('selected');
-						$('#select2, #select3, #select1').text('select');
-
-                        $.ajax({
-                            url: "{{ path('avenue_checkout_ajax_replaceproduct') }}?product={{ productTrial.id }}",
-                        })
-                        .done(function(data) {
-                            console.log(data);
-						});
-
-                    });*/
-
-                    {% if currentItem.product.id == productMaximum.id %}
-                        $('#btn-one').click();
-                    {% endif %}
-                    /*{% if currentItem.product.id == productPopular.id %}
-                        $('#btn-two').click();
-                    {% endif %}
-                    {% if currentItem.product.id == productStarter.id %}
-                        $('#btn-three').click();
-                    {% endif %}
-                    {% if currentItem.product.id == productTrial.id %}
-                        $('#btn-four').click();
-                    {% endif %}*/
-					
-					if(document.getElementById('radioOne').checked) {
-						toggleBillingAddress('Yes');
-					}else if(document.getElementById('radioTwo').checked) {
-						toggleBillingAddress('No');
+						$('#requestForm').goValidate();
+						
+						if(!$('#billing_street_address').val())
+						{$('#err_address').fadeIn('slow').delay(7000).fadeOut('slow');
+						$('#billing_street_address').css('background-color','#FFE4E1');}
+						if(!$('#billing_city').val())
+						{$('#err_city').fadeIn('slow').delay(7000).fadeOut('slow');
+							$('#billing_city').css('background-color','#FFE4E1');}
+						if(!$('#billing_postcode').val())
+						{$('#err_zipcode').fadeIn('slow').delay(7000).fadeOut('slow');
+							$('#billing_postcode').css('background-color','#FFE4E1');}
 					}
-					
-					
-					$('#sbm_button').click(function(){
-							if(!$('#form_shippingAddress').val())
-							{$('#err_address').fadeIn('slow').delay(7000).fadeOut('slow');
-							$('#form_shippingAddress').css('background-color','#FFE4E1');}
-							if(!$('#form_shippingCity').val())
-							{$('#err_city').fadeIn('slow').delay(7000).fadeOut('slow');
-								$('#form_shippingCity').css('background-color','#FFE4E1');}
-							if(!$('#form_shippingZip').val())
-							{$('#err_zipcode').fadeIn('slow').delay(7000).fadeOut('slow');
-								$('#form_shippingZip').css('background-color','#FFE4E1');}
+				);
+				
+				
+				/*$('#form-error').bind("DOMSubtreeModified",function(){
+	
+				//$('#form-error').html)().change(function (){
+					var allerrors = $('#form-error').html();
+					if((allerrors.trim()).length > 0)
+					{
+						allerrors = allerrors.replace("<br>", "\n");
+						alert(allerrors);
+					}
+				});*/
+				
+				$( "#billing_street_address" ).keydown(function() {
+				  $('#billing_street_address').css('background-color','');
+				});
+				$( "#billing_city" ).keydown(function() {
+				  $('#billing_city').css('background-color','');
+				});
+				$( "#billing_postcode" ).keydown(function() {
+				  $('#billing_postcode').css('background-color','');
+				});
+				
+				
+				/* Bootstrap Form Validation - Begin */
+				
+				
+				$.fn.goValidate = function() {
+					var $form = this,
+						$inputs = $form.find('input:text'),
+						$checkboxes = $form.find('input:checkbox.required');
+				  
+					var validators = {
+						billing_city: {
+							regex: /^[A-Za-z]{1,}$/
+						},
+						billing_street_address: {
+							regex: /^.{1,}$/
+						},
+						postcode: {
+							regex: /^.{1,}$/
 						}
-					);
+						
+					};
+					var validate = function(klass, value) {
+						var isValid = true,
+							error = '';
+							
+						if (!value && /required/.test(klass)) {
+							error = 'This field is required';
+							isValid = false;
+						} else {
+							klass = klass.split(/\s/);
+							$.each(klass, function(i, k){
+								if (validators[k]) {
+									if (value && !validators[k].regex.test(value)) {
+										isValid = false;
+										error = validators[k].error;
+									}
+								}
+							});
+						}
+						return {
+							isValid: isValid,
+							error: error
+						}
+					};
+					var showError = function($e) {
+						var klass = $e.attr('class'),
+							value = $e.val(),
+							test = validate(klass, value);
+						var datacontent = '';
+							
+						datacontent = $e.attr('data-content');
+					  
+						$e.removeClass('invalid');
+						$('#form-error').addClass('hide');
+						
+						if (!test.isValid) {
+							$e.addClass('invalid');
+							if(typeof $e.data("shown") == "undefined" || $e.data("shown") == false){
+							   $e.popover('show');
+							}
+						   $('#form-error').append('<li>' + datacontent + '</li>');
+							
+						}
+					  else {
+						$e.popover('hide');
+					  }
+					};
+				   
+					$inputs.keyup(function() {
+						showError($(this));
+					});
+					$(':checkbox.required').click(function() {
+						$(this).each(function(){
+							if(this.checked)
+							{
+								$(this).removeClass('invalid');
+								$(this).popover('hide');
+							}
+							else
+							{
+								$(this).addClass('invalid');
+								$(this).popover('show');
+								
+							}
+						})
+					});
 					
-					$( "#form_shippingAddress" ).keydown(function() {
-					  $('#form_shippingAddress').css('background-color','');
+				  
+					$inputs.on('shown.bs.popover', function () {
+						$(this).data("shown",true);
 					});
-					$( "#form_shippingCity" ).keydown(function() {
-					  $('#form_shippingCity').css('background-color','');
+				  
+					$inputs.on('hidden.bs.popover', function () {
+						$(this).data("shown",false);
 					});
-					$( "#form_shippingZip" ).keydown(function() {
-					  $('#form_shippingZip').css('background-color','');
+					
+				  
+					$form.submit(function(e) {
+					  
+						$('#form-error').html('');
+						$('#form-error').hide();
+						$inputs.each(function() { /* test each input */
+							if ($(this).is('.required') || $(this).hasClass('invalid')) {
+								showError($(this));
+							}
+						});
+						$checkboxes.each(function() { /* test each input */
+							var datacontent = '';
+							datacontent = $(this).attr('data-content');
+							if ($(this).is('.required') || $(this).hasClass('invalid')) {
+								if(!$(this).is('.invalid')){
+									if(this.checked)
+									{
+										$(this).removeClass('invalid');
+										$(this).popover('hide');
+									}
+									else
+									{
+										$(this).addClass('invalid');
+										$(this).popover('show');
+									}
+								}
+								if($(this).is('.invalid'))
+								{
+									$('#form-error').append('<li>' + datacontent + '</li>');
+								}
+								
+							}
+						});
+						
+						if ($form.find('input.invalid').length) { /* form is not valid */
+							e.preventDefault();
+							//$('#form-error').toggleClass('hide');
+							$('#form-error').removeClass('hide');
+							$('#form-error').show();
+							
+							$('.invalid').first().focus();
+							//alert($('#form-error').html());
+						}
 					});
+					
+					return this;
+				};
+				
+				/* Bootstrap Form Validation - End */
+				
+			 });
+			 
+			 
+			 
+				
 
-            });
         </script>
     </head>
 
@@ -168,299 +373,456 @@
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
                     <div class="header-right">
-						<p class="header-p1">We’ve helped <span class="header-p2">56,372+ Europeans</span> <span class="header-p3">“Go Snore-Free”</span></p>
+						<p class="header-p1">Remove Bald Spots <span class="header-p2">Within 30 Seconds!</span></p>
 					</div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="main-elements">
-                    <h1 class="cong-text">TAK FOR SNAKKEN!</h1>
-                    <span class="span-text">Du er nu kun ét skridt fra at blive snorkefri!</span>
-                    <div class="clearfix"></div>
-                    <div class="col-md-8 col-sm-7 col-xs-12">
-                        <div class="product-container">
-                            <!--<a href="javascript:bookmarkscroll.scrollTo('form-box')"><div id="btn-one" style="cursor:pointer;">-->
-                            <a ><div id="btn-one" style="cursor:pointer;">
-                                    <div class="package-box1" >
-                                        <div class="box-heading">
-                                            <p class="heading-text">MAXIMUM PROTECTION</p>
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon">
-											<p class="heading-shipping">Free Shipping</p>
-                                        </div>
-                                        <div class="shipping-icon-xs">
-                                            <img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}">
-											<p class="heading-shipping-xs">Free Shipping</p>
-                                        </div>
-                                        <div class="check"></div>
-									<!--<div class="product-image-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;"></div>-->
-										<div class="product-image-four"><!--<img src="{{ asset('bundles/avenuecheckout/evani/images/product4.png') }}" >--></div>
-                                        <div class="product-price">
-                                            <p>Buy 3 + Get 3<br><span>FREE</span></p>
-                                            <div class="price-box">
-                                                £{{ priceMaximum.price }}
-                                            </div>
-                                           <button class="select-btn" id="select1">select</button>
-                                        </div>
-										<div class="clear-fix"></div>
-										<div class="stock">Current Sell Out Risk : <span>HIGH</span></div>
-                                    </div>
-                            </div></a>
-							<div>
-								<h2 style="font-family: 'robotobold';">
-									Hvordan fungerer NoZnore?
-								</h2>
-								<p style="font-family:'robotoregular';font-size:19.5px;">
-									NoZnore<sup style="font-size:8px;">TM</sup> HGS-35 virker bedre end de konventionelle anti-snorkeskinner. Snorken er ofte forårsaget af at dine luftveje bliver indsnævret og din tunge og hals vibrerer. Med en anti-snoreskinne placeret i munden, meget lig en bideskinne – vil din underkæbe forblive i en fremadrettet position og din mund holdes åben. Dette forhindre din underkæbe i at falde tilbage og ligge pres på dine luftveje, så de forbliver åbne.
-								</p>
-								<div style="width:100%;text-align:center;">
-									<div style="width:48%; font-family: 'robotobold'; padding:10px; text-align:center; display:table-cell;">Uden NoZnore<br /><img width="85%" src="{{ asset('bundles/avenuecheckout/evani/images/udenNoZnore.png') }}"></div>
-									<div style="width:48%; font-family: 'robotobold'; padding:10px; margin-left:-5px; text-align:center; display:table-cell;">MedNoZnore<br /><img width="85%" src="{{ asset('bundles/avenuecheckout/evani/images/MedNoZnore.png') }}"></div>
+                <div class="main-elements">        	
+					<div class="clearfix"></div>
+					<div class="col-md-8 col-sm-7 col-xs-12">
+						<div class="product-container">
+							<h1 class="cong-text">CHOOSE YOUR PACKAGE</h1>
+							<span class="span-text">Our range of packages allows you to find the ultimate collection of products for your level of use</span>
+							<div class="package-box1 select">
+								<div class="box-heading">
+									<div class="uncheck" id="unchecked1"></div>                       	
+									<p class="heading-text">{{ productMaximum.name}}</p>
+									<img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon hidden-xs">                            
+									<p class="heading-shipping">Free Shipping</p>
+								</div>                       
+								<div class="product-image-one" id="btn-one"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-one" class="btn-one"> --><a id="btn-one" class="btn-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+							<div class="box-list box-list1-sm">
+							   <ul>
+								  <li>2 x Hair Repair</li>
+								  <li>1 x Rejuvenating Hair Fixer</li>
+								  <li>1 x Spray Applicator</li>
+								  <li>1 x Hairline Optimizer</li>
+								  <li>1 x 360 Mirror</li>                              
+							   </ul>
+							</div>                        
+							<div class="product-price">
+								<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+									  <option value="" onclick="">Black</option>
+									  <option value="" onclick="">Brown (Dark)</option>
+									  <option value="" onclick="">Brown (Medium)</option>
+									  <option value="" onclick="">Brown</option>
+									  <option value="" onclick="">Brown (Light)</option>
+									  <option value="" onclick="">Blonde (Dark)</option>
+									  <option value="" onclick="">Blonde</option>
+									  <option value="" onclick="">Blonde (Light)</option>
+									  <option value="" onclick="">Auburn</option>
+									  <option value="" onclick="">Grey</option>
+								</select>
+								<div class="price-box">
+									<span style="text-decoration:line-through; color:#f00;">
+										<span style="color:#000;"> List Price: £{{ productMaximum.listPricePre }}<sup>{{ productMaximum.listPricePost }}</sup></span>
+									</span><br>Now £{{ productMaximum.pricePre}}<sup>{{ productMaximum.pricePost}}</sup> 
 								</div>
-								<br />
-								<br />
+								<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-one"> --><a class="btn-one">
+										<button class="select-btn" id="select1">Selected</button>
+								</a></center>
 							</div>
-                            <div class="price-table">
-                                <img src="{{ asset('bundles/avenuecheckout/evani/images/PostDKLogo.png') }}" class="us-postal" style="margin-top:12%;" width="182px">
-                                <table class="tablep" border="0" cellspacing="0" cellpadding="4" align="right">
+							<div class="clearfix"></div>
+							<div class="stock">SAVE 50%</div>
+							</div>             
+							<div class="package-box2">
+								<div class="box-heading">
+									<div class="uncheck" id="unchecked2"></div>  
+									<p class="heading-text">{{ productLarge.name}}</p>
+									<img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon hidden-xs">                           
+									<p class="heading-shipping">Free Shipping</p>
+								</div>                                                
+								<div class="product-image-two"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-two" class="btn-two"> --><a id="btn-two" class="btn-two"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>
+								<div class="box-list box-list2-sm">
+								   <ul>
+									  <li>2 x Hair Repair</li>
+									  <li>1 x Rejuvenating Hair Fixer</li>
+									  <li>1 x Spray Applicator</li>
+									  <li>1 x Hairline Optimizer</li>
+									  <li>1 x 360 Mirror</li>                              
+								   </ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										<option value="" onclick="">Black</option>
+										<option value="" onclick="">Brown (Dark)</option>
+										<option value="" onclick="">Brown (Medium)</option>
+										<option value="" onclick="">Brown</option>
+										<option value="" onclick="">Brown (Light)</option>
+										<option value="" onclick="">Blonde (Dark)</option>
+										<option value="" onclick="">Blonde</option>
+										<option value="" onclick="">Blonde (Light)</option>
+										<option value="" onclick="">Auburn</option>
+										<option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+											<span style="color:#000;"> List Price: £{{ productLarge.listPricePre }}<sup>{{ productLarge.listPricePost }}</sup></span>
+										</span><br>Now £{{ productLarge.pricePre}}<sup>{{ productLarge.pricePost}}</sup> 
+									</div>                                                      
+									<center> <!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-two"> --><a class="btn-two">
+										<button class="select-btn" id="select2">Select</button>
+									</a></center>                            
+								</div>
+								<div class="clearfix"></div>
+								<div class="stock">SAVE 50%</div>
+							</div>                                      
+							<div class="package-box3">
+								<div class="box-heading">
+									<div class="uncheck" id="unchecked3"></div>     
+									<p class="heading-text">{{ productStarter.name}}</p>
+									<img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon hidden-xs">                            
+									<p class="heading-shipping">Free Shipping</p>
+								</div>                        
+								<div class="product-image-three"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-three" class="btn-three"> --><a id="btn-three" class="btn-three"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+								<div class="box-list box-list3-sm">
+								   <ul>
+									  <li>2 x Hair Repair</li>
+									  <li>1 x Rejuvenating Hair Fixer</li>
+									  <li>1 x Spray Applicator</li>
+									  <li>1 x Hairline Optimizer</li>                              
+								   </ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										  <option value="" onclick="">Black</option>
+										  <option value="" onclick="">Brown (Dark)</option>
+										  <option value="" onclick="">Brown (Medium)</option>
+										  <option value="" onclick="">Brown</option>
+										  <option value="" onclick="">Brown (Light)</option>
+										  <option value="" onclick="">Blonde (Dark)</option>
+										  <option value="" onclick="">Blonde</option>
+										  <option value="" onclick="">Blonde (Light)</option>
+										  <option value="" onclick="">Auburn</option>
+										  <option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+										<span style="color:#000;"> List Price: £{{ productStarter.listPricePre }}<sup>{{ productStarter.listPricePost }}</sup></span>
+										</span><br>Now £{{ productStarter.pricePre}}<sup>{{ productStarter.pricePost}}</sup> 
+									</div>                                                      
+									<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-three"> --><a class="btn-three">
+										<button class="select-btn" id="select3">Select</button>
+									</a></center>
+								</div>
+								<div class="clearfix"></div>
+								<div class="stock">SAVE 50%</div>
+							</div>                                    
+							<div class="package-box4">
+								<div class="box-heading"> 
+									<div class="uncheck" id="unchecked4"></div>                         	
+									<p class="heading-text">{{ productBundleOffer.name}}</p>
+								</div>                                                
+								<div class="product-image-four"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-four" class="btn-four"> --><a id="btn-four" class="btn-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+								<div class="box-list box-list4-sm">
+								   <ul>
+									  <li>3 x Hair repair</li>                                                            
+								   </ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										  <option value="" onclick="">Black</option>
+										  <option value="" onclick="">Brown (Dark)</option>
+										  <option value="" onclick="">Brown (Medium)</option>
+										  <option value="" onclick="">Brown</option>
+										  <option value="" onclick="">Brown (Light)</option>
+										  <option value="" onclick="">Blonde (Dark)</option>
+										  <option value="" onclick="">Blonde</option>
+										  <option value="" onclick="">Blonde (Light)</option>
+										  <option value="" onclick="">Auburn</option>
+										  <option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+											<span style="color:#000;"> List Price: £{{ productBundleOffer.listPricePre }}<sup>{{ productBundleOffer.listPricePost }}</sup></span>
+										</span><br>Now £{{ productBundleOffer.pricePre}}<sup>{{ productBundleOffer.pricePost}}</sup> 
+									</div>
+									<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-four"> --><a class="btn-four">
+										<button class="select-btn" id="select4">Select</button> 
+									</a></center>
+								</div>
+								<div class="clearfix"></div>                        
+							</div>
+							<div class="package-box5">
+								<div class="box-heading"> 
+									<div class="uncheck" id="unchecked5"> </div>                             	
+									<p class="heading-text">{{ productSingle.name}}</p>
+								</div>                                                
+								<div class="product-image-five"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-five" class="btn-five"> --><a id="btn-five" class="btn-five"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+								<div class="box-list box-list5-sm">
+									<ul>
+									   <li>1 x Hair repair</li>                             
+									</ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										  <option value="" onclick="">Black</option>
+										  <option value="" onclick="">Brown (Dark)</option>
+										  <option value="" onclick="">Brown (Medium)</option>
+										  <option value="" onclick="">Brown</option>
+										  <option value="" onclick="">Brown (Light)</option>
+										  <option value="" onclick="">Blonde (Dark)</option>
+										  <option value="" onclick="">Blonde</option>
+										  <option value="" onclick="">Blonde (Light)</option>
+										  <option value="" onclick="">Auburn</option>
+										  <option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+											<span style="color:#000;">List Price: £{{ productSingle.listPricePre }}<sup>{{ productSingle.listPricePost }}</sup></span>
+										</span><br>Now £{{ productSingle.pricePre}}<sup>{{ productSingle.pricePost}}</sup>                 
+									</div>
+									<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-five"> --><a class="btn-five">
+										<button class="select-btn" id="select5">Select</button>
+									</a></center>
+								</div>
+								<div class="clearfix"></div>                        
+							</div>
+							<div class="price-table">
+								<img src="{{ asset('bundles/avenuecheckout/evani/images/us-postal.png') }}" class="us-postal">
+								<table class="tablep" border="0" cellspacing="0" cellpadding="4" align="right">                          
+									  <tr>
+										<td align="left" colspan="2" class="table-heading">Order Summary</td>
+									  </tr>
+									  <tr>
+										<td align="left" colspan="2" style="line-height:3px;">&nbsp;</td>
+									  </tr>
+									  <tr style="border-bottom:1px dotted #686868;">
+										<td width="44%" align="right" class="p-text">Package:</td>
+										<td width="56%" align="right" class="p-text" id="package_type"></td>
+									  </tr>
+									   <tr style="border-bottom:1px dotted #686868;">
+										<td align="right" class="p-text">Shipping Type:</td>
+										<td align="right" class="p-text" id="ship_type"></td>
+									  </tr>
+									   <tr style="border-bottom:1px dotted #686868;">
+										<td align="right" class="p-text">Shipping Price:</td>
+										<td align="right" class="p-text" id="ship_price">£0</td>
+									  </tr>
+									  <tr>
+										<td align="right" class="p-text-b">Your Total:</td>
+										<td align="right" class="p-text-b" id="total_price">£0</td>
+									  </tr>
+									  <tr>
+										<td align="left" colspan="2">&nbsp;</td>
+									  </tr>
+								</table>
+							</div>
+						</div>
+					</div>           
+					<div class="col-md-4 col-sm-5 col-xs-12 form-out">
+						<div class="frm-top" id="form-box"> 
+							<p class="frm-top-txt1">Payment Information</p>
+							<p class="frm-top-txt2">FINAL STEP</p>       
+							<p class="frm-top-txt3">Your Billing Information</p>                           
+						</div> 
+						<div class="clearfix"></div>         
+						<div class="frm-mid">
+						   <form  name="requestForm" class="form-horizontal" action="" id="requestForm">                                    
+							   <div id="formfields">
+								   <div id="fields">
+									   <div id="isbillingsame" style="text-align:center;">
+										  Is your billing address the same as your<br /> shipping address?
+										  <div class="question1" style="padding-top:10px;">
+											  <input id="radioOne"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="yes" checked="">&nbsp;Yes
+											  <input id="radioTwo"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="no">&nbsp;No                                  
+										  </div>
+									   </div>                                            
+									   <center><img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards"></center>
+									   <div style="margin-top: 20px;">
+										   <div style="display: none;" id="billingDiv">
+												<p style="text-align:left; padding-left:10px;"><strong></strong></p>                                      
+												<div class="fieldelements">
+													<label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:14px;color:red;display:none;float:right;">Please Enter Address</span></label>
+													<div class="clearfix"></div>                                         
+													<input type="text" id="billing_street_address" name="billing_street_address" class="form-control billing_street_address" data-placement="left" data-trigger="manual" data-content="Please enter your correct address" value="">
+												</div>
+												<div class="fieldelements">
+													<label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:14px;color:red;display:none;float:right;">Please Enter City</span></label>
+													<div class="clearfix"></div>   
+													<input type="text" id="billing_city" name="billing_city" class="form-control billing_city" data-placement="left" data-trigger="manual" data-content="Please enter your City"value="">
+												</div>
+												<div class="fieldelements">
+													<label for="billing_state" id="billing_state_region">State</label>
+													<div class="clearfix"></div>      
+													<select class="" id="billing_state" style="" name="billing_state" size="1" onchange="SetStateHid(this);">
+														<option value="" onclick="">Select State</option>
+														<option value="AL" onclick="">Alabama (AL)</option>
+														<option value="AK" onclick="">Alaska (AK)</option>
+														<option value="AS" onclick="">American Samoa (AS)</option>
+														<option value="AZ" onclick="">Arizona (AZ)</option>
+														<option value="AR" onclick="">Arkansas (AR)</option>
+														<option value="AE-A" onclick="">Armed Forces Africa (AE)</option>
+														<option value="AA" onclick="">Armed Forces Americas (AA)</option>
+														<option value="AE-C" onclick="">Armed Forces Canada (AE)</option>
+														<option value="AE-E" onclick="">Armed Forces Europe (AE)</option>
+														<option value="AE-M" onclick="">Armed Forces Middle East (AE)</option>
+														<option value="AP" onclick="">Armed Forces Pacific (AP)</option>
+														<option value="CA" onclick="">California (CA)</option>
+														<option value="CO" onclick="">Colorado (CO)</option>
+														<option value="CT" onclick="">Connecticut (CT)</option>
+														<option value="DE" onclick="">Delaware (DE)</option>
+														<option value="DC" onclick="">District of Columbia (DC)</option>
+														<option value="FM" onclick="">Federated States of Micronesia (FM)</option>
+														<option value="FL" onclick="">Florida (FL)</option>
+														<option value="GA" onclick="">Georgia (GA)</option>
+														<option value="GU" onclick="">Guam (GU)</option>
+														<option value="HI" onclick="">Hawaii (HI)</option>
+														<option value="ID" onclick="">Idaho (ID)</option>
+														<option value="IL" onclick="">Illinois (IL)</option>
+														<option value="IN" onclick="">Indiana (IN)</option>
+														<option value="IA" onclick="">Iowa (IA)</option>
+														<option value="KS" onclick="">Kansas (KS)</option>
+														<option value="KY" onclick="">Kentucky (KY)</option>
+														<option value="LA" onclick="">Louisiana (LA)</option>
+														<option value="ME" onclick="">Maine (ME)</option>
+														<option value="MD" onclick="">Maryland (MD)</option>
+														<option value="MA" onclick="">Massachusetts (MA)</option>
+														<option value="MI" onclick="">Michigan (MI)</option>
+														<option value="MN" onclick="">Minnesota (MN)</option>
+														<option value="MS" onclick="">Mississippi (MS)</option>
+														<option value="MO" onclick="">Missouri (MO)</option>
+														<option value="MT" onclick="">Montana (MT)</option>
+														<option value="NE" onclick="">Nebraska (NE)</option>
+														<option value="NV" onclick="">Nevada (NV)</option>
+														<option value="NH" onclick="">New Hampshire (NH)</option>
+														<option value="NJ" onclick="">New Jersey (NJ)</option>
+														<option value="NM" onclick="">New Mexico (NM)</option>
+														<option value="NY" onclick="">New York (NY)</option>
+														<option value="NC" onclick="">North Carolina (NC)</option>
+														<option value="ND" onclick="">North Dakota (ND)</option>
+														<option value="MP" onclick="">Northern Mariana Islands (MP)</option>
+														<option value="OH" onclick="">Ohio (OH)</option>
+														<option value="OK" onclick="">Oklahoma (OK)</option>
+														<option value="OR" onclick="">Oregon (OR)</option>
+														<option value="PA" onclick="">Pennsylvania (PA)</option>
+														<option value="PR" onclick="">Puerto Rico (PR)</option>
+														<option value="MH" onclick="">Republic of Marshall Islands (MH)</option>
+														<option value="RI" onclick="">Rhode Island (RI)</option>
+														<option value="SC" onclick="">South Carolina (SC)</option>
+														<option value="SD" onclick="">South Dakota (SD)</option>
+														<option value="TN" onclick="">Tennessee (TN)</option>
+														<option value="TX" onclick="">Texas (TX)</option>
+														<option value="UT" onclick="">Utah (UT)</option>
+														<option value="VT" onclick="">Vermont (VT)</option>
+														<option value="VI" onclick="">Virgin Islands of the U.S. (VI)</option>
+														<option value="VA" onclick="">Virginia (VA)</option>
+														<option value="WA" onclick="">Washington (WA)</option>
+														<option value="WV" onclick="">West Virginia (WV)</option>
+														<option value="WI" onclick="">Wisconsin (WI)</option>
+														<option value="WY" onclick="">Wyoming (WY)</option></select> 
+												</div>
+												<div class="fieldelements">
+													<label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:14px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
+													<div class="clearfix"></div>  
+													<input type="text" id="billing_postcode" name="billing_postcode" class="form-control billing_postcode" data-placement="left" data-trigger="manual" data-content="Please enter your Postal Code" value="">
+												</div>                                        										
+										   </div>                                   
+										   <div class="fieldelements">
+											   <label for="cc_type" class="formlabel">Card Type</label>
+											   <div class="clearfix"></div>      
+											   <select onchange="payment_change(this)" onkeydown="this.onchange();" onkeyup="this.onchange();" id="cc_type" name="cc_type">
+												   <option value="">Select Card</option>
+												   <option value="visa">Visa</option>
+												   <option value="master">Master Card</option>
+												   <option value="discover">Discover</option>
+											   </select>
+										   </div>
+										   <div class="fieldelements">
+											   <label for="cc_number">CC#</label>
+											   <div class="clearfix"></div>      
+											   <input type="text" maxlength="16" onkeydown="return onlyNumbers(event, 'cc')" id="cc_number" name="cc_number" autocomplete="off" placeholder="Card Number">
+										   </div>
+										   <div class="fieldelements">
+											   <label for="cc_expires" class="formlabel"> Exp. Date</label>
+											   <div class="clearfix"></div>       
+											   <select name="fields_expmonth" onchange="javascript:update_expire()" id="fields_expmonth" class="expmnth">
+													<option selected="" value="">Month</option>
+													<option value="01">(01) January</option>
+													<option value="02">(02) February</option>
+													<option value="03">(03) March</option>
+													<option value="04">(04) April</option>
+													<option value="05">(05) May</option>
+													<option value="06">(06) June</option>
+													<option value="07">(07) July</option>
+													<option value="08">(08) August</option>
+													<option value="09">(09) September</option>
+													<option value="10">(10) October</option>
+													<option value="11">(11) November</option>
+													<option value="12">(12) December</option>
 
-                                    <tr>
-                                        <td align="left" colspan="2" class="table-heading">Order Summary</td>
-                                    </tr>
-                                    <tr>
-                                        <td align="left" colspan="2" style="line-height:3px;">&nbsp;</td>
-                                    </tr>
-                                    <tr style="border-bottom:1px dotted #686868;">
-                                        <td width="44%" align="right" class="p-text">Package:</td>
-                                        <td width="56%" align="right" class="p-text" id="package_type">Buy 3 + Get 3 FREE </td>
-                                    </tr>
-                                    <tr style="border-bottom:1px dotted #686868;">
-                                        <td align="right" class="p-text">Shipping Type:</td>
-                                        <td align="right" class="p-text">Priority Shipping</td>
-                                    </tr>
-                                    <tr style="border-bottom:1px dotted #686868;">
-                                        <td align="right" class="p-text">Shipping Price:</td>
-                                        <td align="right" class="p-text">£0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" class="p-text-b">Your Total:</td>
-                                        <td align="right" class="p-text-b" id="total_price">£{{ priceMaximum.price }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td align="left" colspan="2">&nbsp;</td>
-                                    </tr>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-5 col-xs-12">
-                        <div class="frm-top" id="form-box">
-							<center>
-								<img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top.png') }}" class="hidden-sm hidden-xs" style="width:100%;">
-								<img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top-768.png') }}" class="hidden-lg hidden-md hidden-xs" style="width:100%;">
-								<img src="{{ asset('bundles/avenuecheckout/evani/images/frm-top-640.png') }}" class="hidden-lg hidden-md hidden-sm" style="width:100%;">
-							</center>
-							<p class="frm-top-txt1">LIMITED SUPPLIES AVAILABLE</p>
-							<p class="frm-top-txt2">Final Step</p>       
-							<p class="frm-top-txt3">Payment INFORMATION</p>                     
-                        </div>
-                        <div class="frm-mid">
-                            {{ form_start(form, {'attr':{'id':'checkout-form'}}) }}
-                                <div id="formfields">
-                                    <div id="fields">
-                                        <div id="isbillingsame" style="text-align:center;">
-                                            Is your billing address the same as your<br /> shipping address?
-                                            <div class="question1" style="padding-top:10px;">
-                                                <input id="radioOne"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="yes" checked="">&nbsp;Yes
-                                                <input id="radioTwo"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="no">&nbsp;No
-                                            </div>
-                                        </div>
-                                        <center>
-										<span>We Accept:</span>&nbsp;<img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards">
-										</center>
-										<!---->
-                                        <div style="margin-top: 20px;">
-                                            <div style="display: none;" id="billingDiv">
-                                                <p style="text-align:left; padding-left:10px;"><strong></strong></p>
-
-                                                <div class="fieldelements">
-                                                    <label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:14px;color:red;display:none;float:right;">Please Enter Address</span></label>
-													
-                                                    <div class="clearfix"></div>
-                                                    {{ form_widget(form.shippingAddress) }}
-                                                </div>
-                                                <div class="fieldelements">
-                                                    <label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:14px;color:red;display:none;float:right;">Please Enter City</span></label>
-													
-                                                    <div class="clearfix"></div>
-                                                    {{ form_widget(form.shippingCity) }}
-                                                </div>
-                                                <!--
-                                                <div class="fieldelements">
-                                                    <label for="billing_state" id="billing_state_region">State</label>
-                                                    <div class="clearfix"></div>
-                                                    <select class="" id="billing_state" style="" name="billing_state" size="1" onchange="SetStateHid(this);">
-                                                        <option value="" onclick="">Select State</option>
-                                                        <option value="AL" onclick="">Alabama (AL)</option>
-                                                        <option value="AK" onclick="">Alaska (AK)</option>
-                                                        <option value="AS" onclick="">American Samoa (AS)</option>
-                                                        <option value="AZ" onclick="">Arizona (AZ)</option>
-                                                        <option value="AR" onclick="">Arkansas (AR)</option>
-                                                        <option value="AE-A" onclick="">Armed Forces Africa (AE)</option>
-                                                        <option value="AA" onclick="">Armed Forces Americas (AA)</option>
-                                                        <option value="AE-C" onclick="">Armed Forces Canada (AE)</option>
-                                                        <option value="AE-E" onclick="">Armed Forces Europe (AE)</option>
-                                                        <option value="AE-M" onclick="">Armed Forces Middle East (AE)</option>
-                                                        <option value="AP" onclick="">Armed Forces Pacific (AP)</option>
-                                                        <option value="CA" onclick="">California (CA)</option>
-                                                        <option value="CO" onclick="">Colorado (CO)</option>
-                                                        <option value="CT" onclick="">Connecticut (CT)</option>
-                                                        <option value="DE" onclick="">Delaware (DE)</option>
-                                                        <option value="DC" onclick="">District of Columbia (DC)</option>
-                                                        <option value="FM" onclick="">Federated States of Micronesia (FM)</option>
-                                                        <option value="FL" onclick="">Florida (FL)</option>
-                                                        <option value="GA" onclick="">Georgia (GA)</option>
-                                                        <option value="GU" onclick="">Guam (GU)</option>
-                                                        <option value="HI" onclick="">Hawaii (HI)</option>
-                                                        <option value="ID" onclick="">Idaho (ID)</option>
-                                                        <option value="IL" onclick="">Illinois (IL)</option>
-                                                        <option value="IN" onclick="">Indiana (IN)</option>
-                                                        <option value="IA" onclick="">Iowa (IA)</option>
-                                                        <option value="KS" onclick="">Kansas (KS)</option>
-                                                        <option value="KY" onclick="">Kentucky (KY)</option>
-                                                        <option value="LA" onclick="">Louisiana (LA)</option>
-                                                        <option value="ME" onclick="">Maine (ME)</option>
-                                                        <option value="MD" onclick="">Maryland (MD)</option>
-                                                        <option value="MA" onclick="">Massachusetts (MA)</option>
-                                                        <option value="MI" onclick="">Michigan (MI)</option>
-                                                        <option value="MN" onclick="">Minnesota (MN)</option>
-                                                        <option value="MS" onclick="">Mississippi (MS)</option>
-                                                        <option value="MO" onclick="">Missouri (MO)</option>
-                                                        <option value="MT" onclick="">Montana (MT)</option>
-                                                        <option value="NE" onclick="">Nebraska (NE)</option>
-                                                        <option value="NV" onclick="">Nevada (NV)</option>
-                                                        <option value="NH" onclick="">New Hampshire (NH)</option>
-                                                        <option value="NJ" onclick="">New Jersey (NJ)</option>
-                                                        <option value="NM" onclick="">New Mexico (NM)</option>
-                                                        <option value="NY" onclick="">New York (NY)</option>
-                                                        <option value="NC" onclick="">North Carolina (NC)</option>
-                                                        <option value="ND" onclick="">North Dakota (ND)</option>
-                                                        <option value="MP" onclick="">Northern Mariana Islands (MP)</option>
-                                                        <option value="OH" onclick="">Ohio (OH)</option>
-                                                        <option value="OK" onclick="">Oklahoma (OK)</option>
-                                                        <option value="OR" onclick="">Oregon (OR)</option>
-                                                        <option value="PA" onclick="">Pennsylvania (PA)</option>
-                                                        <option value="PR" onclick="">Puerto Rico (PR)</option>
-                                                        <option value="MH" onclick="">Republic of Marshall Islands (MH)</option>
-                                                        <option value="RI" onclick="">Rhode Island (RI)</option>
-                                                        <option value="SC" onclick="">South Carolina (SC)</option>
-                                                        <option value="SD" onclick="">South Dakota (SD)</option>
-                                                        <option value="TN" onclick="">Tennessee (TN)</option>
-                                                        <option value="TX" onclick="">Texas (TX)</option>
-                                                        <option value="UT" onclick="">Utah (UT)</option>
-                                                        <option value="VT" onclick="">Vermont (VT)</option>
-                                                        <option value="VI" onclick="">Virgin Islands of the U.S. (VI)</option>
-                                                        <option value="VA" onclick="">Virginia (VA)</option>
-                                                        <option value="WA" onclick="">Washington (WA)</option>
-                                                        <option value="WV" onclick="">West Virginia (WV)</option>
-                                                        <option value="WI" onclick="">Wisconsin (WI)</option>
-                                                        <option value="WY" onclick="">Wyoming (WY)</option></select>
-                                                </div>
-                                                -->
-                                                <div class="fieldelements">
-                                                    <label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:14px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
-													
-                                                    <div class="clearfix"></div>
-                                                    {{ form_widget(form.shippingZip) }}
-                                                </div>
-												<!--<script type="text/javascript">
-													if($('#radioOne').checked)
-													{
-														$('#form_shippingAddress').removeAttr('required');
-														$('#form_shippingCity').removeAttr('required');
-														$('#form_shippingZip').removeAttr('required');
-														alert('now unset!');
-													}
-												</script>-->
-                                                <hr>
-                                            </div>
-                                            <!--
-                                            <div class="fieldelements">
-                                                <label for="cc_type" class="formlabel">Card Type</label>
-                                                <div class="clearfix"></div>
-                                                <select onchange="payment_change(this)" onkeydown="this.onchange();" onkeyup="this.onchange();" id="cc_type" name="cc_type">
-                                                    <option value="">Select Card</option>
-                                                    <option value="visa">Visa</option>
-                                                    <option value="master">Master Card</option>
-                                                    <option value="discover">Discover</option>
-                                                </select>
-                                            </div>
-                                            -->
-                                            <div class="fieldelements">
-                                                <label for="cc_number">Card Number</label>
-                                                <div class="clearfix"></div>
-                                                <input data-quickpay="cardnumber" autocomplete="off" type="text" id="cc_number" placeholder="Card Number">
-                                            </div>
-                                            <div class="fieldelements">
-                                                <label for="cc_expires" class="formlabel"> Expiry Date</label>
-                                                <div class="clearfix"></div>
-                                                <input placeholder="MM / YY" data-quickpay="expiration" autocomplete="off" type="text" id="cc_expire">
-                                            </div>
-                                            <div class="clearfix"></div>
-                                            <div class="fieldelements">
-                                                <label for="cc_cvv" class="formlabel">Security Code*</label>
-                                                <div class="clearfix"></div>
-                                                <input data-quickpay="cvd" autocomplete="off"  type="text" class="cvv" placeholder="Number" >
-                                                <span data-toggle="modal" data-target="#myModal" style="margin-left:10px; cursor:pointer; text-decoration:underline;">What's This?</span>
-
-                                                <div class="flt-n"></div>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <div class="fieldelements" style="font:12px arial; text-align:left; margin: 10px 0 0px 0; color:#fff;">
-                                                <input checked type="checkbox"  name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">Subscribe to our Monthly Newsletter and stay updated.</p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                            <div class="fieldelements" style="font:12px arial; text-align:left; margin:0; color:#fff;">
-											<input type="checkbox" name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a style="color:#fff; text-decoration:underline;" href="https://www.your-secure-payment.com/terms/denmark/page" data-toggle="modal" data-target="#myTerms">Terms & Conditions</a> and <a href="https://www.your-secure-payment.com/privacy/denmark/page" style="color:#fff;text-decoration:underline" data-toggle="modal" data-target="#myPrivacy">Privacy Policy</a> of this website.</p>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="btn1-ordr1" align="center">
-										  <button id='sbm_button' class="submit">RUSH MY ORDER<br>
-											 <span class="btn-span">LIMITED TIME PROMOTION</span></button>
-										  <img src="{{ asset('bundles/avenuecheckout/evani/images/btn-shdw.png') }}" style="width:100%;">
-									    </div>
-                                    </div>
-                                    <div class="lock-txt"><img src="{{ asset('bundles/avenuecheckout/evani/images/lock.png') }}" class="lock">SECURE 256-BIT SSL ENCRYPTION</div>
-									<div class="clearfix"></div>
-									<div class="secure-1">
-									  <p class="secure1-txt">100% Safe &amp; Secure Transactions </p>
+											  </select>
+											   <select name="fields_expyear" onchange="javascript:update_expire()" id="fields_expyear" class="expyr">
+													<option value="15">2015</option>
+													<option value="16">2016</option>
+													<option value="17">2017</option>
+													<option value="18">2018</option>
+													<option value="19">2019</option>
+													<option value="20">2020</option>
+													<option value="21">2021</option>
+													<option value="22">2022</option>
+													<option value="23">2023</option>
+													<option value="24">2024</option>
+													<option value="25">2025</option>
+											  </select>
+										   </div> 
+										   <div class="clearfix"></div>                                  
+										   <div class="fieldelements">                                                       
+											   <label for="cc_cvv" class="formlabel">CVV</label>
+											   <div class="clearfix"></div>   
+											   <input  type="text" name="cc_cvv" class="cvv" placeholder="Number" >                                       
+											   <span data-toggle="modal" data-target="#myModal" style="margin-left:10px; cursor:pointer; text-decoration:underline;">What's This?</span>                                       
+											   <div class="flt-n"></div>
+										   </div>                                    
+										   <div class="clearfix"></div>    
+										   <div class="fieldelements" style="font:12px arial; text-align:left; margin: 10px 0 0px 0; color:#fff;">
+											   <input checked type="checkbox"  name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">Subscribe to our Monthly Newsletter and stay updated.</p>
+										   </div>	
+										   <div class="clearfix"></div>
+										   <div class="fieldelements" style="font:12px arial; text-align:left; margin:0; color:#fff;">
+											   <!--<input type="checkbox" name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a href="#" style="color:#fff;">Terms & Conditions</a> and <a href="#" style="color:#fff;">Privacy Policy</a> of this website.</p>-->
+												<input type="checkbox"   class="required agree_terms" name="agree_terms" id="agree_terms" data-placement="top" data-trigger="manual" data-content="Please agree to Terms & Conditions and Privacy Terms"  value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a style="color:#fff; text-decoration:underline;" href="https://www.your-secure-payment.com/terms/denmark/page" data-toggle="modal" data-target="#myTerms">Terms & Conditions</a> and <a href="https://www.your-secure-payment.com/privacy/denmark/page" style="color:#fff;text-decoration:underline" data-toggle="modal" data-target="#myPrivacy">Privacy Policy</a> of this website.</p>
+										   </div>	
+										   <div class="clearfix"></div>                                                                
+										</div>
+									   <div class="btn1-ordr2" align="center">
+											<button  id="sbm_button" class="submit2">Rush My Order</button>                               
+											<br /><br />
+											<!-- Show the messages in #errors -->
+											<div ><ul id="form-error"></ul></div>
+									   </div>
+								   </div>                           
+								   <div class="lock-txt"><img src="{{ asset('bundles/avenuecheckout/evani/images/lock.png') }}" class="lock">SECURE 256-BIT SSL ENCRYPTION</div>
+								   <div class="clearfix"></div> 
+								   <div class="secure-1">
+									  <p class="secure1-txt">100% Safe & Secure Transactions </p>
 									  <center><img src="{{ asset('bundles/avenuecheckout/evani/images/security1.jpg') }}" class="security1"></center>
-								    </div>
-									<div class="secure-2">
-										<table border="0" cellpadding="5" cellspacing="0" width="100%">
-											<tbody><tr>
-											<td valign="top" width="10%"><img src="{{ asset('bundles/avenuecheckout/evani/images/ylc.png') }}"></td>
-											<td width="90%"><span class="span1">SHOP WITH CONFIDANCE</span><br><span class="span2">NOZNORE SNORING SAFE<br>AND SECURE. GURANTEED!</span></td>
+								   </div>                           
+								   <div class="secure-2">
+										<table width="100%" border="0" cellspacing="0" cellpadding="5">
+											<tr>
+											<td width="10%" valign="top"><img src="{{ asset('bundles/avenuecheckout/evani/images/ylc.png') }}" /></td>
+											<td width="90%"><span class="span1">SHOP WITH CONFIDANCE</span><br /><span class="span2">AVENUE HAIR SAFE<br>AND SECURE. GURANTEED!</span></td>
 											</tr>
 											<tr>
-											<td colspan="2" width="14%"><span class="span3">You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at noznore.com</span></td>
+											<td colspan="2" width="14%"><span class="span3">You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at avenuehair.com</span></td>
 											</tr>
 											
 											<tr>
-											<td valign="top" width="10%"><img src="{{ asset('bundles/avenuecheckout/evani/images/gcld.png') }}"></td>
-											<td width="90%"><span class="span1">YOUR PRIVACY IS IMPORTANT!</span><br><span style="letter-spacing:-0.2px;">All information is encrypted and transmitted without risk using a Secure Sockets Layer (SSL) protocol.</span></td>
+											<td width="10%" valign="top"><img src="{{ asset('bundles/avenuecheckout/evani/images/gcld.png') }}" /></td>
+											<td width="90%"><span class="span1">YOUR PRIVACY IS IMPORTANT!</span><br /><span style="letter-spacing:-0.2px;">All information is encrypted and transmitted without risk using a Secure Sockets Layer (SSL) protocol.</span></td>
 											</tr>
-										</tbody></table>
-									</div>
-                                </div>
-                                <div id="formbottom"></div>
-                            {{ form_end(form) }}
-                        </div>
-                        <div class="frm-btm"></div>
-                    </div>
-                </div>
-            </div>
+										</table>
+								   </div>
+							   </div>
+							   <div id="formbottom"></div>
+						   </form>
+						</div>
+						<div class="frm-btm"></div>
+				   </div>
+				</div>
+    
+				
         </div>
         <div class="clearfix"></div>
 
@@ -474,7 +836,7 @@
                     <br class="ftr-brk">
                     <a data-toggle="modal" data-target="#myContact">Contact Us</a>
                     </p>
-                    <p class="ftr-txt">© 2015 NoZnore. All Rights Reserved</p>
+                    <p class="ftr-txt">© 2015 AVENUE® hair Repair™. All Rights Reserved</p>
                 </div>
             </div>
         </div>
@@ -542,16 +904,22 @@
                 if (radioButtonObj.value == "no")
                 {
                     billingDiv.style.display = 'inline';
-					$('#form_shippingAddress').attr('required','required');
-					$('#form_shippingCity').attr('required','required');
-					$('#form_shippingZip').attr('required','required');
+					//$('#billing_street_address').attr('required','required');
+					$('#billing_street_address').addClass('required');
+					//$('#billing_city').attr('required','required');
+					$('#billing_city').addClass('required');
+					//$('#billing_postcode').attr('required','required');
+					$('#billing_postcode').addClass('required');
                 }
                 else
                 {
                     billingDiv.style.display = 'none';
-					$('#form_shippingAddress').removeAttr('required');
-					$('#form_shippingCity').removeAttr('required');
-					$('#form_shippingZip').removeAttr('required');
+					//$('#billing_street_address').removeAttr('required');
+					$('#billing_street_address').removeClass('required');
+					//$('#billing_city').removeAttr('required');
+					$('#billing_city').removeClass('required');
+					//$('#billing_postcode').removeAttr('required');
+					$('#billing_postcode').removeClass('required');
                 }
 					  
             }

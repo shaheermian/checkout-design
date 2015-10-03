@@ -5939,9 +5939,6 @@ button.close {
 
 .modal {
   position: fixed;
-  width:75%;
-  height:75%;
-  margin:auto auto;
   top: 0;
   right: 0;
   bottom: 0;
@@ -5950,6 +5947,9 @@ button.close {
   display: none;
   overflow: auto;
   overflow-y: auto;
+  width:75%;
+  height:75%;
+  margin:auto auto;
 }
 
 .modal.fade .modal-dialog {

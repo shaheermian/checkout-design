@@ -1,0 +1,737 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Avenue Hair</title>
+        <link rel="shortcut icon" href="{{ asset('bundles/avenuecheckout/evani/images/favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/avenuecheckout/evani/css/bootstrap.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/avenuecheckout/evani/css/media.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/avenuecheckout/evani/fonts/stylesheet.css') }}">
+        <script type="text/javascript" src="{{ asset('bundles/avenuecheckout/evani/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ asset('bundles/avenuecheckout/evani/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/avenuecheckout/evani/js/bookmarkscroll.js') }}"></script>
+        <script type="text/javascript">
+            this.addEventListener("DOMContentLoaded", preloadImages, true);
+
+			var loadedImages = 0;
+			var imageArray = new Array(
+				"{{ asset('bundles/avenuecheckout/evani/images/product4.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/select-box-768.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/selected-box-desk.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-768.jpg') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/unselect-box-desk.jpg') }}",
+				"{{ asset('bundles/avenuecheckout/evani/images/PostDKLogo.png') }}"
+			);
+				/*"{{ asset('bundles/avenuecheckout/evani/images/product1.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product-1-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product2-unselect.png') }}", 
+				"{{ asset('bundles/avenuecheckout/evani/images/product3.png') }}", */
+			var tempImage = Array();
+			function preloadImages()
+			{
+				for (var i = 0; i < imageArray.length; i++) {
+					tempImage[i] = new Image();
+					tempImage[i] = imageArray[i];
+				}
+			}
+			
+			$(document).ready(function() {
+				$('#unchecked2, #unchecked3, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+				$('#unchecked1').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+				$('.btn-one').click(function(){
+					$('.package-box1').addClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productMaximum.name }}');
+					$('#total_price').html('£{{ productMaximum.total }}');
+					$('#ship_price').html('£{{ productMaximum.shippingPrice }}');
+					$('#ship_type').html('{{ productMaximum.shippingText }}');
+					$('#unchecked1').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked2, #unchecked3, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select1').text('selected');
+					$('#select2, #select3,#select4,#select5').text('select');
+				}); 
+				$('.btn-two').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').addClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productLarge.name }}')
+					$('#total_price').html('£{{ productLarge.total }}');
+					$('#ship_price').html('£{{ productLarge.shippingPrice }}');
+					$('#ship_type').html('{{ productLarge.shippingText }}');
+				$('#unchecked2').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked3, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select2').text('selected');
+					$('#select1, #select3, #select4,#select5').text('select');
+				});
+				$('.btn-three').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').addClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productStarter.name }}');
+					$('#total_price').html('£{{ productStarter.total }}');
+					$('#ship_price').html('£{{ productStarter.shippingPrice }}');
+					$('#ship_type').html('{{ productStarter.shippingText }}');
+				$('#unchecked3').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked2, #unchecked4, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select3').text('selected');
+					$('#select2, #select1, #select4,#select5').text('select');
+				});
+				$('.btn-four').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').addClass('select');
+					$('.package-box5').removeClass('select');
+					$('#package_type').html('{{ productBundleOffer.name }}');
+					$('#total_price').html('£{{ productBundleOffer.total }}');
+					$('#ship_price').html('£{{ productBundleOffer.shippingPrice }}');
+					$('#ship_type').html('{{ productBundleOffer.shippingText }}');
+				$('#unchecked4').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked2, #unchecked3, #unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select4').text('selected');
+					$('#select2, #select3, #select1,#select5').text('select');
+				});
+				$('.btn-five').click(function(){
+					$('.package-box1').removeClass('select');
+					$('.package-box2').removeClass('select');
+					$('.package-box3').removeClass('select');
+					$('.package-box4').removeClass('select');
+					$('.package-box5').addClass('select');
+					$('#package_type').html('{{ productSingle.name }}');
+					$('#total_price').html('£{{ productSingle.total }}');
+					$('#ship_price').html('£{{ productSingle.shippingPrice }}');
+					$('#ship_type').html('{{ productSingle.shippingText }}');
+				$('#unchecked5').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/check.png') }}"+"'>");
+					$('#unchecked1, #unchecked2, #unchecked3, #unchecked4').html("<img src='"+"{{ asset('bundles/avenuecheckout/evani/images/uncheck.png') }}"+"'>");
+					$('#select5').text('selected');
+					$('#select2, #select3, #select1,#select4').text('select');
+				});
+				
+				{% if currentItem.product.id == productMaximum.id %}
+					$('.btn-one').click();
+				{% endif %}
+				{% if currentItem.product.id == productLarge.id %}
+					$('.btn-two').click();
+				{% endif %}
+				{% if currentItem.product.id == productBundleOffer.id %}
+					$('.btn-three').click();
+				{% endif %}
+				{% if currentItem.product.id == productStarter.id %}
+					$('.btn-four').click();
+				{% endif %}
+				{% if currentItem.product.id == productSingle.id %}
+					$('.btn-five').click();
+				{% endif %}
+				
+				if(document.getElementById('radioOne').checked) {
+					toggleBillingAddress('Yes');
+				}else if(document.getElementById('radioTwo').checked) {
+					toggleBillingAddress('No');
+				}
+				
+				
+				$('#sbm_button').click(function(){
+						if(!$('#billing_street_address').val())
+						{$('#err_address').fadeIn('slow').delay(7000).fadeOut('slow');
+						$('#billing_street_address').css('background-color','#FFE4E1');}
+						if(!$('#billing_city').val())
+						{$('#err_city').fadeIn('slow').delay(7000).fadeOut('slow');
+							$('#billing_city').css('background-color','#FFE4E1');}
+						if(!$('#billing_postcode').val())
+						{$('#err_zipcode').fadeIn('slow').delay(7000).fadeOut('slow');
+							$('#billing_postcode').css('background-color','#FFE4E1');}
+					}
+				);
+				
+				$( "#billing_street_address" ).keydown(function() {
+				  $('#billing_street_address').css('background-color','');
+				});
+				$( "#billing_city" ).keydown(function() {
+				  $('#billing_city').css('background-color','');
+				});
+				$( "#billing_postcode" ).keydown(function() {
+				  $('#billing_postcode').css('background-color','');
+				});
+			 });
+
+        </script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <center><a href="#"><img src="{{ asset('bundles/avenuecheckout/evani/images/top-logo.png') }}" class="img-responsive logo"></a></center>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="header-right">
+						<p class="header-p1">Remove Bald Spots <span class="header-p2">Within 30 Seconds!</span></p>
+					</div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="main-elements">        	
+					<div class="clearfix"></div>
+					<div class="col-md-8 col-sm-7 col-xs-12">
+						<div class="product-container">
+							<h1 class="cong-text">CHOOSE YOUR PACKAGE</h1>
+							<span class="span-text">Our range of packages allows you to find the ultimate collection of products for your level of use</span>
+							<div class="package-box1 select">
+								<div class="box-heading">
+									<div class="uncheck" id="unchecked1"></div>                       	
+									<p class="heading-text">{{ productMaximum.name}}</p>
+									<img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon hidden-xs">                            
+									<p class="heading-shipping">Free Shipping</p>
+								</div>                       
+								<div class="product-image-one" id="btn-one"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-one" class="btn-one"> --><a id="btn-one" class="btn-one"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+							<div class="box-list box-list1-sm">
+							   <ul>
+								  <li>2 x Hair Repair</li>
+								  <li>1 x Rejuvenating Hair Fixer</li>
+								  <li>1 x Spray Applicator</li>
+								  <li>1 x Hairline Optimizer</li>
+								  <li>1 x 360 Mirror</li>                              
+							   </ul>
+							</div>                        
+							<div class="product-price">
+								<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+									  <option value="" onclick="">Black</option>
+									  <option value="" onclick="">Brown (Dark)</option>
+									  <option value="" onclick="">Brown (Medium)</option>
+									  <option value="" onclick="">Brown</option>
+									  <option value="" onclick="">Brown (Light)</option>
+									  <option value="" onclick="">Blonde (Dark)</option>
+									  <option value="" onclick="">Blonde</option>
+									  <option value="" onclick="">Blonde (Light)</option>
+									  <option value="" onclick="">Auburn</option>
+									  <option value="" onclick="">Grey</option>
+								</select>
+								<div class="price-box">
+									<span style="text-decoration:line-through; color:#f00;">
+										<span style="color:#000;"> List Price: £{{ productMaximum.listPricePre }}<sup>{{ productMaximum.listPricePost }}</sup></span>
+									</span><br>Now £{{ productMaximum.pricePre}}<sup>{{ productMaximum.pricePost}}</sup> 
+								</div>
+								<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-one"> --><a class="btn-one">
+										<button class="select-btn" id="select1">Selected</button>
+								</a></center>
+							</div>
+							<div class="clearfix"></div>
+							<div class="stock">SAVE 50%</div>
+							</div>             
+							<div class="package-box2">
+								<div class="box-heading">
+									<div class="uncheck" id="unchecked2"></div>  
+									<p class="heading-text">{{ productLarge.name}}</p>
+									<img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon hidden-xs">                           
+									<p class="heading-shipping">Free Shipping</p>
+								</div>                                                
+								<div class="product-image-two"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-two" class="btn-two"> --><a id="btn-two" class="btn-two"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>
+								<div class="box-list box-list2-sm">
+								   <ul>
+									  <li>2 x Hair Repair</li>
+									  <li>1 x Rejuvenating Hair Fixer</li>
+									  <li>1 x Spray Applicator</li>
+									  <li>1 x Hairline Optimizer</li>
+									  <li>1 x 360 Mirror</li>                              
+								   </ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										<option value="" onclick="">Black</option>
+										<option value="" onclick="">Brown (Dark)</option>
+										<option value="" onclick="">Brown (Medium)</option>
+										<option value="" onclick="">Brown</option>
+										<option value="" onclick="">Brown (Light)</option>
+										<option value="" onclick="">Blonde (Dark)</option>
+										<option value="" onclick="">Blonde</option>
+										<option value="" onclick="">Blonde (Light)</option>
+										<option value="" onclick="">Auburn</option>
+										<option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+											<span style="color:#000;"> List Price: £{{ productLarge.listPricePre }}<sup>{{ productLarge.listPricePost }}</sup></span>
+										</span><br>Now £{{ productLarge.pricePre}}<sup>{{ productLarge.pricePost}}</sup> 
+									</div>                                                      
+									<center> <!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-two"> --><a class="btn-two">
+										<button class="select-btn" id="select2">Select</button>
+									</a></center>                            
+								</div>
+								<div class="clearfix"></div>
+								<div class="stock">SAVE 50%</div>
+							</div>                                      
+							<div class="package-box3">
+								<div class="box-heading">
+									<div class="uncheck" id="unchecked3"></div>     
+									<p class="heading-text">{{ productStarter.name}}</p>
+									<img src="{{ asset('bundles/avenuecheckout/evani/images/free-shipping.png') }}" class="shipping-icon hidden-xs">                            
+									<p class="heading-shipping">Free Shipping</p>
+								</div>                        
+								<div class="product-image-three"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-three" class="btn-three"> --><a id="btn-three" class="btn-three"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+								<div class="box-list box-list3-sm">
+								   <ul>
+									  <li>2 x Hair Repair</li>
+									  <li>1 x Rejuvenating Hair Fixer</li>
+									  <li>1 x Spray Applicator</li>
+									  <li>1 x Hairline Optimizer</li>                              
+								   </ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										  <option value="" onclick="">Black</option>
+										  <option value="" onclick="">Brown (Dark)</option>
+										  <option value="" onclick="">Brown (Medium)</option>
+										  <option value="" onclick="">Brown</option>
+										  <option value="" onclick="">Brown (Light)</option>
+										  <option value="" onclick="">Blonde (Dark)</option>
+										  <option value="" onclick="">Blonde</option>
+										  <option value="" onclick="">Blonde (Light)</option>
+										  <option value="" onclick="">Auburn</option>
+										  <option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+										<span style="color:#000;"> List Price: £{{ productStarter.listPricePre }}<sup>{{ productStarter.listPricePost }}</sup></span>
+										</span><br>Now £{{ productStarter.pricePre}}<sup>{{ productStarter.pricePost}}</sup> 
+									</div>                                                      
+									<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-three"> --><a class="btn-three">
+										<button class="select-btn" id="select3">Select</button>
+									</a></center>
+								</div>
+								<div class="clearfix"></div>
+								<div class="stock">SAVE 50%</div>
+							</div>                                    
+							<div class="package-box4">
+								<div class="box-heading"> 
+									<div class="uncheck" id="unchecked4"></div>                         	
+									<p class="heading-text">{{ productBundleOffer.name}}</p>
+								</div>                                                
+								<div class="product-image-four"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-four" class="btn-four"> --><a id="btn-four" class="btn-four"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+								<div class="box-list box-list4-sm">
+								   <ul>
+									  <li>3 x Hair repair</li>                                                            
+								   </ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										  <option value="" onclick="">Black</option>
+										  <option value="" onclick="">Brown (Dark)</option>
+										  <option value="" onclick="">Brown (Medium)</option>
+										  <option value="" onclick="">Brown</option>
+										  <option value="" onclick="">Brown (Light)</option>
+										  <option value="" onclick="">Blonde (Dark)</option>
+										  <option value="" onclick="">Blonde</option>
+										  <option value="" onclick="">Blonde (Light)</option>
+										  <option value="" onclick="">Auburn</option>
+										  <option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+											<span style="color:#000;"> List Price: £{{ productBundleOffer.listPricePre }}<sup>{{ productBundleOffer.listPricePost }}</sup></span>
+										</span><br>Now £{{ productBundleOffer.pricePre}}<sup>{{ productBundleOffer.pricePost}}</sup> 
+									</div>
+									<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-four"> --><a class="btn-four">
+										<button class="select-btn" id="select4">Select</button> 
+									</a></center>
+								</div>
+								<div class="clearfix"></div>                        
+							</div>
+							<div class="package-box5">
+								<div class="box-heading"> 
+									<div class="uncheck" id="unchecked5"> </div>                             	
+									<p class="heading-text">{{ productSingle.name}}</p>
+								</div>                                                
+								<div class="product-image-five"><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" id="btn-five" class="btn-five"> --><a id="btn-five" class="btn-five"><img src="{{ asset('bundles/avenuecheckout/evani/images/product1-mg.png') }}" style="width:100%;height: 100%;"></a></div>                        
+								<div class="box-list box-list5-sm">
+									<ul>
+									   <li>1 x Hair repair</li>                             
+									</ul>
+								</div>                        
+								<div class="product-price">
+									<select class="select-box" id="pr-color" style="" name="pr-color" size="1" onchange="SetStateHid(this);">
+										  <option value="" onclick="">Black</option>
+										  <option value="" onclick="">Brown (Dark)</option>
+										  <option value="" onclick="">Brown (Medium)</option>
+										  <option value="" onclick="">Brown</option>
+										  <option value="" onclick="">Brown (Light)</option>
+										  <option value="" onclick="">Blonde (Dark)</option>
+										  <option value="" onclick="">Blonde</option>
+										  <option value="" onclick="">Blonde (Light)</option>
+										  <option value="" onclick="">Auburn</option>
+										  <option value="" onclick="">Grey</option>
+									</select>
+									<div class="price-box">
+										<span style="text-decoration:line-through; color:#f00;">
+											<span style="color:#000;">List Price: £{{ productSingle.listPricePre }}<sup>{{ productSingle.listPricePost }}</sup></span>
+										</span><br>Now £{{ productSingle.pricePre}}<sup>{{ productSingle.pricePost}}</sup>                 
+									</div>
+									<center><!-- <a href="javascript:bookmarkscroll.scrollTo('form-box')" class="btn-five"> --><a class="btn-five">
+										<button class="select-btn" id="select5">Select</button>
+									</a></center>
+								</div>
+								<div class="clearfix"></div>                        
+							</div>
+							<div class="price-table">
+								<img src="{{ asset('bundles/avenuecheckout/evani/images/us-postal.png') }}" class="us-postal">
+								<table class="tablep" border="0" cellspacing="0" cellpadding="4" align="right">                          
+									  <tr>
+										<td align="left" colspan="2" class="table-heading">Order Summary</td>
+									  </tr>
+									  <tr>
+										<td align="left" colspan="2" style="line-height:3px;">&nbsp;</td>
+									  </tr>
+									  <tr style="border-bottom:1px dotted #686868;">
+										<td width="44%" align="right" class="p-text">Package:</td>
+										<td width="56%" align="right" class="p-text" id="package_type"></td>
+									  </tr>
+									   <tr style="border-bottom:1px dotted #686868;">
+										<td align="right" class="p-text">Shipping Type:</td>
+										<td align="right" class="p-text" id="ship_type"></td>
+									  </tr>
+									   <tr style="border-bottom:1px dotted #686868;">
+										<td align="right" class="p-text">Shipping Price:</td>
+										<td align="right" class="p-text" id="ship_price">£0</td>
+									  </tr>
+									  <tr>
+										<td align="right" class="p-text-b">Your Total:</td>
+										<td align="right" class="p-text-b" id="total_price">£0</td>
+									  </tr>
+									  <tr>
+										<td align="left" colspan="2">&nbsp;</td>
+									  </tr>
+								</table>
+							</div>
+						</div>
+					</div>           
+					<div class="col-md-4 col-sm-5 col-xs-12 form-out">
+						<div class="frm-top" id="form-box"> 
+							<p class="frm-top-txt1">Payment Information</p>
+							<p class="frm-top-txt2">FINAL STEP</p>       
+							<p class="frm-top-txt3">Your Billing Information</p>                           
+						</div> 
+						<div class="clearfix"></div>         
+						<div class="frm-mid">
+						   <form  name="requestForm" action="" id="requestForm">                                    
+							   <div id="formfields">
+								   <div id="fields">
+									   <div id="isbillingsame" style="text-align:center;">
+										  Is your billing address the same as your<br /> shipping address?
+										  <div class="question1" style="padding-top:10px;">
+											  <input id="radioOne"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="yes" checked="">&nbsp;Yes
+											  <input id="radioTwo"  onclick="toggleBillingAddress(this)" type="radio" name="billingSameAsShipping" value="no">&nbsp;No                                  
+										  </div>
+									   </div>                                            
+									   <center><img src="{{ asset('bundles/avenuecheckout/evani/images/accept.png') }}" class="cards"></center>
+									   <div style="margin-top: 20px;">
+										   <div style="display: none;" id="billingDiv">
+												<p style="text-align:left; padding-left:10px;"><strong></strong></p>                                      
+												<div class="fieldelements">
+													<label for="billing_street_address">Address&nbsp;&nbsp;<span id="err_address" style="font-size:14px;color:red;display:none;float:right;">Please Enter Address</span></label>
+													<div class="clearfix"></div>                                         
+													<input type="text" id="billing_street_address" name="billing_street_address" class="form-control" value="">
+												</div>
+												<div class="fieldelements">
+													<label for="billing_city">City&nbsp;&nbsp;<span id="err_city" style="font-size:14px;color:red;display:none;float:right;">Please Enter City</span></label>
+													<div class="clearfix"></div>   
+													<input type="text" id="billing_city" name="billing_city" value="">
+												</div>
+												<div class="fieldelements">
+													<label for="billing_state" id="billing_state_region">State</label>
+													<div class="clearfix"></div>      
+													<select class="" id="billing_state" style="" name="billing_state" size="1" onchange="SetStateHid(this);">
+														<option value="" onclick="">Select State</option>
+														<option value="AL" onclick="">Alabama (AL)</option>
+														<option value="AK" onclick="">Alaska (AK)</option>
+														<option value="AS" onclick="">American Samoa (AS)</option>
+														<option value="AZ" onclick="">Arizona (AZ)</option>
+														<option value="AR" onclick="">Arkansas (AR)</option>
+														<option value="AE-A" onclick="">Armed Forces Africa (AE)</option>
+														<option value="AA" onclick="">Armed Forces Americas (AA)</option>
+														<option value="AE-C" onclick="">Armed Forces Canada (AE)</option>
+														<option value="AE-E" onclick="">Armed Forces Europe (AE)</option>
+														<option value="AE-M" onclick="">Armed Forces Middle East (AE)</option>
+														<option value="AP" onclick="">Armed Forces Pacific (AP)</option>
+														<option value="CA" onclick="">California (CA)</option>
+														<option value="CO" onclick="">Colorado (CO)</option>
+														<option value="CT" onclick="">Connecticut (CT)</option>
+														<option value="DE" onclick="">Delaware (DE)</option>
+														<option value="DC" onclick="">District of Columbia (DC)</option>
+														<option value="FM" onclick="">Federated States of Micronesia (FM)</option>
+														<option value="FL" onclick="">Florida (FL)</option>
+														<option value="GA" onclick="">Georgia (GA)</option>
+														<option value="GU" onclick="">Guam (GU)</option>
+														<option value="HI" onclick="">Hawaii (HI)</option>
+														<option value="ID" onclick="">Idaho (ID)</option>
+														<option value="IL" onclick="">Illinois (IL)</option>
+														<option value="IN" onclick="">Indiana (IN)</option>
+														<option value="IA" onclick="">Iowa (IA)</option>
+														<option value="KS" onclick="">Kansas (KS)</option>
+														<option value="KY" onclick="">Kentucky (KY)</option>
+														<option value="LA" onclick="">Louisiana (LA)</option>
+														<option value="ME" onclick="">Maine (ME)</option>
+														<option value="MD" onclick="">Maryland (MD)</option>
+														<option value="MA" onclick="">Massachusetts (MA)</option>
+														<option value="MI" onclick="">Michigan (MI)</option>
+														<option value="MN" onclick="">Minnesota (MN)</option>
+														<option value="MS" onclick="">Mississippi (MS)</option>
+														<option value="MO" onclick="">Missouri (MO)</option>
+														<option value="MT" onclick="">Montana (MT)</option>
+														<option value="NE" onclick="">Nebraska (NE)</option>
+														<option value="NV" onclick="">Nevada (NV)</option>
+														<option value="NH" onclick="">New Hampshire (NH)</option>
+														<option value="NJ" onclick="">New Jersey (NJ)</option>
+														<option value="NM" onclick="">New Mexico (NM)</option>
+														<option value="NY" onclick="">New York (NY)</option>
+														<option value="NC" onclick="">North Carolina (NC)</option>
+														<option value="ND" onclick="">North Dakota (ND)</option>
+														<option value="MP" onclick="">Northern Mariana Islands (MP)</option>
+														<option value="OH" onclick="">Ohio (OH)</option>
+														<option value="OK" onclick="">Oklahoma (OK)</option>
+														<option value="OR" onclick="">Oregon (OR)</option>
+														<option value="PA" onclick="">Pennsylvania (PA)</option>
+														<option value="PR" onclick="">Puerto Rico (PR)</option>
+														<option value="MH" onclick="">Republic of Marshall Islands (MH)</option>
+														<option value="RI" onclick="">Rhode Island (RI)</option>
+														<option value="SC" onclick="">South Carolina (SC)</option>
+														<option value="SD" onclick="">South Dakota (SD)</option>
+														<option value="TN" onclick="">Tennessee (TN)</option>
+														<option value="TX" onclick="">Texas (TX)</option>
+														<option value="UT" onclick="">Utah (UT)</option>
+														<option value="VT" onclick="">Vermont (VT)</option>
+														<option value="VI" onclick="">Virgin Islands of the U.S. (VI)</option>
+														<option value="VA" onclick="">Virginia (VA)</option>
+														<option value="WA" onclick="">Washington (WA)</option>
+														<option value="WV" onclick="">West Virginia (WV)</option>
+														<option value="WI" onclick="">Wisconsin (WI)</option>
+														<option value="WY" onclick="">Wyoming (WY)</option></select> 
+												</div>
+												<div class="fieldelements">
+													<label for="billing_postcode">Zip Code&nbsp;&nbsp;<span id="err_zipcode" style="font-size:14px;color:red;display:none;float:right;">Please Enter Zip Code</span></label>
+													<div class="clearfix"></div>  
+													<input type="text" id="billing_postcode" name="billing_postcode" value="">
+												</div>                                        										
+										   </div>                                   
+										   <div class="fieldelements">
+											   <label for="cc_type" class="formlabel">Card Type</label>
+											   <div class="clearfix"></div>      
+											   <select onchange="payment_change(this)" onkeydown="this.onchange();" onkeyup="this.onchange();" id="cc_type" name="cc_type">
+												   <option value="">Select Card</option>
+												   <option value="visa">Visa</option>
+												   <option value="master">Master Card</option>
+												   <option value="discover">Discover</option>
+											   </select>
+										   </div>
+										   <div class="fieldelements">
+											   <label for="cc_number">CC#</label>
+											   <div class="clearfix"></div>      
+											   <input type="text" maxlength="16" onkeydown="return onlyNumbers(event, 'cc')" id="cc_number" name="cc_number" autocomplete="off" placeholder="Card Number">
+										   </div>
+										   <div class="fieldelements">
+											   <label for="cc_expires" class="formlabel"> Exp. Date</label>
+											   <div class="clearfix"></div>       
+											   <select name="fields_expmonth" onchange="javascript:update_expire()" id="fields_expmonth" class="expmnth">
+													<option selected="" value="">Month</option>
+													<option value="01">(01) January</option>
+													<option value="02">(02) February</option>
+													<option value="03">(03) March</option>
+													<option value="04">(04) April</option>
+													<option value="05">(05) May</option>
+													<option value="06">(06) June</option>
+													<option value="07">(07) July</option>
+													<option value="08">(08) August</option>
+													<option value="09">(09) September</option>
+													<option value="10">(10) October</option>
+													<option value="11">(11) November</option>
+													<option value="12">(12) December</option>
+
+											  </select>
+											   <select name="fields_expyear" onchange="javascript:update_expire()" id="fields_expyear" class="expyr">
+													<option value="15">2015</option>
+													<option value="16">2016</option>
+													<option value="17">2017</option>
+													<option value="18">2018</option>
+													<option value="19">2019</option>
+													<option value="20">2020</option>
+													<option value="21">2021</option>
+													<option value="22">2022</option>
+													<option value="23">2023</option>
+													<option value="24">2024</option>
+													<option value="25">2025</option>
+											  </select>
+										   </div> 
+										   <div class="clearfix"></div>                                  
+										   <div class="fieldelements">                                                       
+											   <label for="cc_cvv" class="formlabel">CVV</label>
+											   <div class="clearfix"></div>   
+											   <input  type="text" name="cc_cvv" class="cvv" placeholder="Number" >                                       
+											   <span data-toggle="modal" data-target="#myModal" style="margin-left:10px; cursor:pointer; text-decoration:underline;">What's This?</span>                                       
+											   <div class="flt-n"></div>
+										   </div>                                    
+										   <div class="clearfix"></div>    
+										   <div class="fieldelements" style="font:12px arial; text-align:left; margin: 10px 0 0px 0; color:#fff;">
+											   <input checked type="checkbox"  name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">Subscribe to our Monthly Newsletter and stay updated.</p>
+										   </div>	
+										   <div class="clearfix"></div>
+										   <div class="fieldelements" style="font:12px arial; text-align:left; margin:0; color:#fff;">
+											   <!--<input type="checkbox" name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a href="#" style="color:#fff;">Terms & Conditions</a> and <a href="#" style="color:#fff;">Privacy Policy</a> of this website.</p>-->
+											   <input type="checkbox" required="required" name="agree_terms" id="agree_terms" value="Y" style="float:left; margin: 3px 4px 0 0;" /><p class="flt-l" style="width:96%; margin-left:20px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">I agree to the <a style="color:#fff; text-decoration:underline;" href="https://www.your-secure-payment.com/terms/denmark/page" data-toggle="modal" data-target="#myTerms">Terms & Conditions</a> and <a href="https://www.your-secure-payment.com/privacy/denmark/page" style="color:#fff;text-decoration:underline" data-toggle="modal" data-target="#myPrivacy">Privacy Policy</a> of this website.</p>
+										   </div>	
+										   <div class="clearfix"></div>                                                                
+										</div>
+									   <div class="btn1-ordr2" align="center">
+										  <button  id="sbm_button" class="submit2">Rush My Order</button>                               
+									   </div>
+								   </div>                           
+								   <div class="lock-txt"><img src="{{ asset('bundles/avenuecheckout/evani/images/lock.png') }}" class="lock">SECURE 256-BIT SSL ENCRYPTION</div>
+								   <div class="clearfix"></div> 
+								   <div class="secure-1">
+									  <p class="secure1-txt">100% Safe & Secure Transactions </p>
+									  <center><img src="{{ asset('bundles/avenuecheckout/evani/images/security1.jpg') }}" class="security1"></center>
+								   </div>                           
+								   <div class="secure-2">
+										<table width="100%" border="0" cellspacing="0" cellpadding="5">
+											<tr>
+											<td width="10%" valign="top"><img src="{{ asset('bundles/avenuecheckout/evani/images/ylc.png') }}" /></td>
+											<td width="90%"><span class="span1">SHOP WITH CONFIDANCE</span><br /><span class="span2">AVENUE HAIR SAFE<br>AND SECURE. GURANTEED!</span></td>
+											</tr>
+											<tr>
+											<td colspan="2" width="14%"><span class="span3">You'll pay nothing if unauthorized charges are made to your credit card as a result of shopping at avenuehair.com</span></td>
+											</tr>
+											
+											<tr>
+											<td width="10%" valign="top"><img src="{{ asset('bundles/avenuecheckout/evani/images/gcld.png') }}" /></td>
+											<td width="90%"><span class="span1">YOUR PRIVACY IS IMPORTANT!</span><br /><span style="letter-spacing:-0.2px;">All information is encrypted and transmitted without risk using a Secure Sockets Layer (SSL) protocol.</span></td>
+											</tr>
+										</table>
+								   </div>
+							   </div>
+							   <div id="formbottom"></div>
+						   </form>
+						</div>
+						<div class="frm-btm"></div>
+				   </div>
+				</div>
+    
+				
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="footer">
+            <div class="container">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <p class="ftr-txt">
+                    <a data-toggle="modal" href="https://www.your-secure-payment.com/terms/denmark/page" data-target="#myTerms">Terms and Conditions</a>
+                    <br class="ftr-brk">
+                    <a data-toggle="modal" href="https://www.your-secure-payment.com/privacy/denmark/page" data-target="#myPrivacy">Privacy Policy</a>
+                    <br class="ftr-brk">
+                    <a data-toggle="modal" data-target="#myContact">Contact Us</a>
+                    </p>
+                    <p class="ftr-txt">© 2015 AVENUE® hair Repair™. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:none;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <center><img src="{{ asset('bundles/avenuecheckout/evani/images/security_code_logo.gif') }}" style="max-width:351px; width:100%;"></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="myPrivacy" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+					   <div class="modal-header" style="border-bottom:none;">
+							<!--Privacy-->
+						</div>
+						<div class="modal-body">
+							<!--Privacy-->
+					   </div>
+					</div>
+			</div>
+        </div>
+
+        <div id="myContact" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:none;">
+                        Contact
+                    </div>
+                    <div class="modal-body">
+                        Contact
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="myTerms" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:none;">
+                        <!--Terms-->
+                    </div>
+                    <div class="modal-body">
+                        <!--Terms-->
+                    </div>
+                </div>
+			</div>
+        </div>
+
+        <script type="text/ecmascript">
+            function toggleBillingAddress(radioButtonObj)
+            {
+                var billingDiv = document.getElementById('billingDiv');
+                if (radioButtonObj.value == "no")
+                {
+                    billingDiv.style.display = 'inline';
+					$('#billing_street_address').attr('required','required');
+					$('#billing_city').attr('required','required');
+					$('#billing_postcode').attr('required','required');
+                }
+                else
+                {
+                    billingDiv.style.display = 'none';
+					$('#billing_street_address').removeAttr('required');
+					$('#billing_city').removeAttr('required');
+					$('#billing_postcode').removeAttr('required');
+                }
+					  
+            }
+        </script>
+
+        <script type="text/javascript">
+            var quickpay_merchantid = "{{ quickpay_merchantid }}";
+            var quickpay_agreementid = "{{ quickpay_agreementid }}";
+            var gateway_debug_url = "{{ path('avenue_checkout_ajax_gatewayerror') }}";
+            var order_id = "{{ entity.id }}";
+
+            //var paymentErrorMessage = 'Your card information cannot be verified, please check your card and try again.';
+            //var paymentButtonText = 'Complete Payment';
+            //var paymentWaitText = 'Please wait...';
+        </script>
+		<script src="https://payment.quickpay.net/embedded/v1/quickpay.js"></script>
+		<script type="text/javascript" src="{{ asset('bundles/avenuecheckout/js/quickpay.js') }}"></script>
+
+		
+		
+	</body>
+</html>
